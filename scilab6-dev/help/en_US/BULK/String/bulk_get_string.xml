@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* JOSE PABLO CASTRO VALVERDE                                            
+* Copyright (C) EDDAP 2012                                             
+* josepablo.castro@gmail.com 
+* USB Comunication Toolbox                                          
+* This file is released under the 3-clause BSD license. See COPYING-BSD.
+ -->
+<refentry version="5.0-subset Scilab" xml:id="bulk_get_string" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+  <refnamediv>
+    <refname>bulk_get_string</refname>
+    <refpurpose>Get a string from a USB device, based on its string index.</refpurpose>
+  </refnamediv>
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+    <synopsis>[indexed_string,string_success]=bulk_get_string(index_pos)</synopsis>
+  </refsynopsisdiv>
+  <refsection><title>Parameters</title>
+  <variablelist>
+    <varlistentry>  
+      <term>index_pos</term>
+        <listitem>
+        : The index of the string to get. The type of index_pos has to be unsigned integer 16 bits
+     </listitem> 
+    </varlistentry>
+    <varlistentry>  
+      <term>indexed_string</term>
+        <listitem>
+        : string A wide string
+     </listitem> 
+    </varlistentry>
+    <varlistentry>  
+      <term>string_success</term>
+        <listitem>
+        : This function returns 0 on success and -1 on error
+        </listitem> 
+      </varlistentry>
+    </variablelist>
+   </refsection> 
+  <refsection>
+    <title>Description</title>
+    <para>Get a string from a USB device, based on its string index.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+    <![CDATA[
+      clc
+      VendorID="04D8";
+      ProductID="0204";
+      VendorID=uint16(hex2dec(VendorID));
+      ProductID=uint16(hex2dec(ProductID));
+      init_success=bulk_init();
+      if ( init_success < 0 ) then
+         disp("unable to initialize the Libusb-1.0 Library");
+         return
+      else
+           disp("Libusb-1.0 Library initialized");
+      end
+      open_success=bulk_open(VendorID,ProductID);
+      if ( open_success < 0 ) then
+           disp("unable to open device");
+           return
+      else
+           disp("Device Open");
+      end
+      for i=1:3
+          [indexed_string,string_success]=bulk_get_string(uint16(i))
+          if ( string_success < 0 ) then
+               disp("unable to get indexed string");
+               close_success=bulk_close();
+               exit_success=bulk_exit();
+               return
+          else
+               disp(indexed_string);
+          end    
+      end
+      close_success=bulk_close();  
+      if ( close_success < 0 ) then
+         disp("unable to closed device");
+      else
+         disp("device closed");
+      end
+      exit_success=bulk_exit();
+      if ( exit_success < 0 ) then
+         disp("unable to free static data associated with Libusb-1.0 Library");
+         return
+      else
+         disp("Libusb-1.0 Library have been freed all of the static data associated");
+      end
+   ]]>
+   </programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="get_stringusb">get_stringusb</link>
+      </member>
+      <member>
+        <link linkend="bulk_init">bulk_init</link>
+      </member>
+      <member>
+        <link linkend="bulk_open">bulk_open</link>
+      </member>
+      <member>
+        <link linkend="bulk_close">bulk_close</link>
+      </member>
+      <member>
+        <link linkend="bulk_exit">bulk_exit</link>
+      </member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <simplelist type="vert">
+      <member>Jose Pablo Castro Valverde josepablo.castro@gmail.com</member>
+    </simplelist>
+  </refsection>
+</refentry>
