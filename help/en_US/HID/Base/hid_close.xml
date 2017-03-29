@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* JOSE PABLO CASTRO VALVERDE                                            
+* Copyright (C) EDDAP 2012                                             
+* josepablo.castro@gmail.com 
+* USB Comunication Toolbox                                          
+* This file is released under the 3-clause BSD license. See COPYING-BSD.
+ -->
+<refentry version="5.0-subset Scilab" xml:id="hid_close" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>hid_close</refname>
+
+    <refpurpose>Close an USB HID Device Opened</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>close_success = hid_close()</synopsis>
+  </refsynopsisdiv>
+<refsection><title>Parameters</title>
+  <variablelist>
+    <varlistentry>  
+    <term>close_success  </term>
+      <listitem>
+      : retun 0 if device has been closed and -1 if the device can not be closed.
+      </listitem> 
+    </varlistentry>
+</variablelist>
+  
+   </refsection>
+  <refsection>
+    <title>Description</title>
+
+    <para>Close an USB HID Device Open </para>
+
+    <para>
+    Once the USB HID Device have been opened, the hid_close() closed the device and release the memory used for the internal handle.
+     If an USB HID Device have been opened its necesary close it when the comunication is over. 
+     </para>
+    <para> 
+    If the device its not closed once have been opened Scilab, eventualy, will crash down because a segmentation fault
+     </para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+     <![CDATA[    
+    VendorID="04D8";
+    ProductID="900A";
+    VendorID=uint16(hex2dec(VendorID));
+    ProductID=uint16(hex2dec(ProductID));
+    init_success=hid_init();
+    if ( init_success < 0 ) then
+       disp("unable to initialize the HIDAPI Library");
+       return
+    else
+      disp("HIDAPI Library initialized");
+    end
+    open_success=hid_open(VendorID,ProductID);
+    if ( open_success < 0 ) then
+       disp("unable to open device");
+       return
+    else
+       disp("device open"); 
+       close_success=hid_close();
+    end
+    exit_success=hid_exit();
+    if ( init_success < 0 ) then
+       disp("unable to free static data associated with HIDAPI Library");
+       return
+    else
+       disp("HIDAPI Library have been freed all of the static data associated");
+    end
+    ]]>
+    </programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="closeusb">closeusb</link>
+      </member>
+      <member>
+        <link linkend="hid_init">hid_init</link>
+      </member>
+      <member>
+        <link linkend="hid_open">hid_open</link>
+      </member>
+      <member>
+        <link linkend="hid_write">hid_write</link>
+      </member>
+      <member>
+        <link linkend="hid_set_nonblocking">hid_set_nonblocking</link>
+      </member>
+      <member>
+        <link linkend="hid_read">hid_read</link>
+      </member>
+      <member>
+        <link linkend="hid_exit">hid_exit</link>
+      </member>
+      <member>
+        <link linkend="hid_read_timeout">hid_read_timeout</link>
+      </member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <simplelist type="vert">
+      <member>Jose Pablo Castro Valverde josepablo.castro@gmail.com</member>
+    </simplelist>
+  </refsection>
+</refentry>

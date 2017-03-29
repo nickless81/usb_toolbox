@@ -1,0 +1,6 @@
+changelog of the usb_toolbox
+usb_toolbox (1.0)
+    * Initial version
+    * USB HID support base on HIDAPI and libusb-1.0
+ -- Jose Pablo Castro Valverde <josepablo.castro@gmail.com>  March 2012
+

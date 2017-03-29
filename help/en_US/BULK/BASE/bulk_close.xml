@@ -1,0 +1,129 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* JOSE PABLO CASTRO VALVERDE                                            
+* Copyright (C) EDDAP 2012                                             
+* josepablo.castro@gmail.com 
+* USB Comunication Toolbox                                          
+* This file is released under the 3-clause BSD license. See COPYING-BSD.
+ -->
+<refentry version="5.0-subset Scilab" xml:id="bulk_close" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>bulk_close</refname>
+
+    <refpurpose>Close an USB Device Opened</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>close_success = bulk_close()</synopsis>
+  </refsynopsisdiv>
+<refsection><title>Parameters</title>
+  <variablelist>
+    <varlistentry>  
+    <term>close_success  </term>
+      <listitem>
+      : retun 0 if device has been closed and -1 if the device can not be closed.
+      </listitem> 
+    </varlistentry>
+</variablelist>
+  
+   </refsection>
+  <refsection>
+    <title>Description</title>
+
+    <para>Close an USB Device Open </para>
+
+    <para>
+    Once the USB Device have been opened, the bulk_close() closed the device and release the memory used for the internal handle.
+     If an USB Device have been opened its necesary close it when the comunication is over. 
+     </para>
+    <para> 
+    If the device its not closed once have been opened Scilab, eventualy, will crash down because a segmentation fault
+     </para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+     <![CDATA[    
+    VendorID="04D8";
+    ProductID="900A";
+    VendorID=uint16(hex2dec(VendorID));
+    ProductID=uint16(hex2dec(ProductID));
+    init_success=hid_init();
+    if ( init_success < 0 ) then
+       disp("unable to initialize the Libusb-1.0 Library");
+       return
+    else
+      disp("Libusb-1.0 Library initialized");
+    end
+    open_success=hid_open(VendorID,ProductID);
+    if ( open_success < 0 ) then
+       disp("unable to open device");
+       return
+    else
+       disp("device open"); 
+       close_success=hid_close();
+    end
+    exit_success=hid_exit();
+    if ( init_success < 0 ) then
+       disp("unable to free static data associated with Libusb-1.0 Library");
+       return
+    else
+       disp("Libusb-1.0 Library have been freed all of the static data associated");
+    end
+    ]]>
+    </programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="closeusb">closeusb</link>
+      </member>
+      <member>
+        <link linkend="bulk_init">bulk_init</link>
+      </member>
+      <member>
+        <link linkend="bulk_open">bulk_open</link>
+      </member>
+      <member>
+        <link linkend="bulk_write">bulk_write</link>
+      </member>
+      <member>
+        <link linkend="bulk_write_timeout">bulk_write_timeout</link>
+      </member>
+      <member>
+        <link linkend="bulk_read">bulk_read</link>
+      </member>
+      <member>
+        <link linkend="bulk_read_timeout">bulk_read_timeout</link>
+      </member>
+      <member>
+        <link linkend="bulk_exit">bulk_exit</link>
+      </member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <simplelist type="vert">
+      <member>Jose Pablo Castro Valverde josepablo.castro@gmail.com</member>
+    </simplelist>
+  </refsection>
+</refentry>

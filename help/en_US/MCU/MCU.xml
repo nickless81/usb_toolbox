@@ -1,0 +1,415 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* JOSE PABLO CASTRO VALVERDE                                            
+* Copyright (C) EDDAP 2012                                             
+* josepablo.castro@gmail.com 
+* USB Comunication Toolbox                                          
+* This file is released under the 3-clause BSD license. See COPYING-BSD.
+ -->
+<refentry version="5.0-subset Scilab" xml:id="MCU" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>MCU Example</refname>
+
+    <refpurpose>Microchip MCU PIC18F4550 Example</refpurpose>
+  </refnamediv>
+  <refsection>
+    <title>Description</title>
+    <para>
+      This section shows the USB HID Device comunicacion process between the host (on GNU/Linux Ubuntu 10-04 32 Bits), and a microcontroler
+      designed to support USB comunication natively without use an external chip.
+    </para>
+    <para>
+    The MCU used for this example is a Microchip MCU PIC18F4550 (see <ulink url="http://www.microchip.com">http://www.microchip.com</ulink>),and the source 
+    code for the MCU was written in ANSI C and compiled with the SDCC (Small Device C Compiler <ulink url="http://sdcc.sourceforge.net/">http://sdcc.sourceforge.net/</ulink>).
+    The USB HID library used with the MCU was a variation of this <ulink url="http://www.nutsvolts.com/index.php?/magazine/article/usb_device_control">http://www.nutsvolts.com/index.php?/magazine/article/usb_device_control</ulink>
+    made by Enrique Olivares, the Copyright is the next:
+    <para>
+    Firmware framework for USB I/O on PIC 18F2455 (and siblings)
+    </para>
+    <para>
+    Copyright (C) 2005 Alexander Enzmann 
+    </para>
+    <para>
+     adapted to MCC18 by Alberto Maccioni on 1/8/09
+     </para>
+     <para>
+    re-adapted to SDCC 2.9.0 by Enrique Olivares (EOL) on 22/06/10
+    </para>
+    <para>
+    The re-adapted version was presented on this forum <ulink url="http://pic-linux.foroactivo.net/">http://pic-linux.foroactivo.net/</ulink> (Spanish's Forum)
+    </para>
+    </para>
+  </refsection>
+    <refsection>
+    <title>USB Permission on GNU/Linux Ubuntu 10.04</title>
+    <simplelist type="inline">
+    <member>
+      First you have to create a group called microchip
+      <synopsis>
+      username@localhost:$ sudo groupadd  group microchip
+      </synopsis>
+    </member>
+    <member>
+      Second you have to added yourself to that group
+      <synopsis>
+      username@localhost:$ sudo adduser username microchip
+      </synopsis>
+    </member>
+    <member>
+      Third you have to create a file for the permissions and save it in /etc/udev/rules.d with the next lines
+      <synopsis>
+      SYSFS{idVendor}=="04d8", SYSFS{idProduct}=="900A", MODE="0666", GROUP="microchip"
+      SYSFS{idVendor}=="04d8", SYSFS{idProduct}=="010B", MODE="0666", GROUP="microchip"
+      </synopsis>
+      The first is for the PICkit 3 I used in the examples and the second for the MCU PIC18F4550 I used
+    </member>
+    <member>
+    As last restart the computer
+      <synopsis>
+      username@localhost:$ sudo shutdown -r now
+      </synopsis>
+    </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Examples</title>
+    <refsection>
+    <title>A simple write and read session between the host and the MCU PIC18F4550</title>
+    <para>
+      In this example the script will send a single instruction to the MCU PIC 18F4550 and receive an array of 5 bytes. 
+      The MCU PIC 18F4550 will send back an array of 64 bytes but the hid_read only takes the first 5.
+    </para>
+    <programlisting role="example">
+    <![CDATA[
+      n=5;
+      txBuff=init_buff(n);
+      for i=1:n
+          txBuff=setBuffValue(txBuff,i,i);
+      end
+      VendorID="04D8";
+      ProductID="010B";
+      VendorID=uint16(hex2dec(VendorID));
+      ProductID=uint16(hex2dec(ProductID));
+      init_success=hid_init();
+      if ( init_success < 0 ) then
+         disp("unable to initialize the HIDAPI Library");
+         return
+      else
+         disp("HIDAPI Library initialized");
+      end
+      open_success=hid_open(VendorID,ProductID);
+      if ( open_success < 0 ) then
+         disp("unable to open device");
+         return
+      else
+         disp("device open");
+      end
+      write_success=hid_write(txBuff,uint8(n));
+      if ( write_success < 0 ) then
+         disp("unable to write device");
+      else
+         disp("device have been written");
+      end
+      nonblocking_success=hid_set_nonblocking(%t);
+      if ( nonblocking_success < 0 ) then
+         disp("unable to set nonblocking");
+      else
+         disp("device have been set nonblocking");
+      end
+      [ rxBuff , read_success ]=hid_read(uint8(n));
+      if ( read_success < 0 ) then
+         disp("unable to read device");
+      else
+         disp("device have been read");
+         disp(rxBuff);
+      end
+      close_success=hid_close();  
+      if ( close_success < 0 ) then
+         disp("unable to closed device");
+      else
+         disp("device closed");
+      end
+      exit_success=hid_exit();
+      if ( init_success < 0 ) then
+         disp("unable to free static data associated with HIDAPI Library");
+         return
+      else
+         disp("HIDAPI Library have been freed all of the static data associated");
+      end
+   ]]>
+   </programlisting>
+   The result will be the next:
+    <programlisting role="example">
+    <![CDATA[
+      HIDAPI Library initialized
+     device open
+     device have been written
+     device have been set nonblocking
+     device have been read
+      2  11  12  13  0
+     device closed
+     HIDAPI Library have been freed all of the static data associated
+    ]]>
+   </programlisting>
+  </refsection>
+  <refsection>
+    <title>Get the Strings of a PICKIT 3 Clone</title>
+    <para> For some reason the script can not get the strings of the PIC18F4550 example, so instead will get the strings of a PICkit 3 Clone</para>
+    <programlisting role="example">
+    <![CDATA[
+      clc
+      VendorID="04D8";
+      ProductID="900A";
+      VendorID=uint16(hex2dec(VendorID));
+      ProductID=uint16(hex2dec(ProductID));
+      init_success=hid_init();
+      if ( init_success < 0 ) then
+         disp("unable to initialize the HIDAPI Library");
+         return
+      else
+           disp("HIDAPI Library initialized");
+      end
+      open_success=hid_open(VendorID,ProductID);
+      if ( open_success < 0 ) then
+           disp("unable to open device");
+           return
+      else
+           disp("Device Open");
+      end
+      [manufacturer_string,manufacturer_success]=hid_get_manufacturer()
+      if ( manufacturer_success < 0 ) then
+           disp("unable to get manufacturer string");
+           close_success=hid_close();
+           exit_success=hid_exit();
+           return
+      else
+           disp(manufacturer_string);
+      end
+      [product_string,product_success]=hid_get_product()
+      if ( product_success< 0 ) then
+           disp("unable to get product string");
+           close_success=hid_close();
+           exit_success=hid_exit();
+           return
+      else
+           disp(product_string);
+      end
+      [serial_string,serial_success]=hid_get_serial()
+      if ( serial_success < 0 ) then
+           disp("unable to get serial string");
+           close_success=hid_close();
+           exit_success=hid_exit();
+           return
+      else
+           disp(serial_string);
+      end
+      disp("using hid_get_string");
+      for i=1:3
+          [indexed_string,string_success]=hid_get_string(uint16(i))
+          if ( string_success < 0 ) then
+               disp("unable to get indexed string");
+               close_success=hid_close();
+               exit_success=hid_exit();
+               return
+          else
+               disp(indexed_string);
+          end    
+      end
+      close_success=hid_close();  
+      if ( close_success < 0 ) then
+         disp("unable to closed device");
+      else
+         disp("device closed");
+      end
+      exit_success=hid_exit();
+      if ( init_success < 0 ) then
+         disp("unable to free static data associated with HIDAPI Library");
+         return
+      else
+         disp("HIDAPI Library have been freed all of the static data associated");
+      end
+      hid_exit()
+   ]]>
+   </programlisting>
+   The result will be the next:
+    <programlisting role="example">
+    <![CDATA[
+      HIDAPI Library initialized
+      Device Open
+      Microchip Technology Inc.
+      PICkit 3
+      DEFAULT_PK3
+      using hid_get_string
+      Microchip Technology Inc.
+      PICkit 3
+      DEFAULT_PK3
+      device closed
+      HIDAPI Library have been freed all of the static data associated
+    ]]>
+   </programlisting>
+  </refsection>
+  <refsection>
+    <title>Take a look of how many HID Devices are conected to the host</title>
+    <para> 
+    In this case there are two HID Devices conected to the host. The script will enumerate one by one and will show the Manufacturer and Product strings 
+    of each conected HID Devices
+    </para>
+    <programlisting role="example">
+    <![CDATA[
+      enum_success=hid_enumerate();
+        if( ~( enum_success < 0 ) ) then
+            success_next = 0;
+            M_Vendor=list();
+            M_Product=list();
+            i=0;
+            while( ~( success_next < 0 ) ) 
+               i=i+1;
+               [success_dev,vendor_id,product_id]=get_device_string ();
+               M_Vendor($+1)=vendor_id;
+               M_Product($+1)=product_id;
+               success_next=next_device(); 
+            end
+            free_success=hid_free_enumeration();
+            Devices=zeros(i,2)
+            for k=1:i
+                Devices(k,1)=M_Vendor(k)
+                Devices(k,2)=M_Product(k)
+            end
+            disp(Devices);
+        end
+    ]]>
+   </programlisting>
+   The result depends fo the number of HID Devices are conected to the Host. For example:
+    <programlisting role="example">
+    <![CDATA[
+     3727.    34.
+    3727.    34.
+    1240.    267.
+    1240.    36874.
+    0.       0.
+    ]]>
+   </programlisting>
+  </refsection>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+    <member>
+        <link linkend="hid_init">hid_init</link>
+      </member>
+      <member>
+        <link linkend="hid_open">hid_open</link>
+      </member>
+      <member>
+        <link linkend="hid_write">hid_write</link>
+      </member>
+      <member>
+        <link linkend="hid_set_nonblocking">hid_set_nonblocking</link>
+      </member>
+      <member>
+        <link linkend="hid_read">hid_read</link>
+      </member>
+      <member>
+        <link linkend="hid_read_timeout">hid_read_timeout</link>
+      </member>
+      <member>
+        <link linkend="hid_close">hid_close</link>
+      </member>
+      <member>
+        <link linkend="hid_exit">hid_exit</link>
+      </member>
+      <member>
+        <link linkend="hid_send_feature_report">hid_send_feature_report</link>
+      </member>
+      <member>
+        <link linkend="hid_get_feature_report">hid_get_feature_report</link>
+      </member>
+      <member>
+        <link linkend="hid_get_manufacturer">hid_get_manufacturer</link>
+      </member>
+      <member>
+        <link linkend="hid_get_product">hid_get_product</link>
+      </member>
+      <member>
+        <link linkend="hid_get_serial">hid_get_serial</link>
+      </member>
+      <member>
+        <link linkend="hid_get_string">hid_get_string</link>
+      </member>
+      <member>
+        <link linkend="hid_enumerate">hid_enumerate</link>
+      </member>
+      <member>
+        <link linkend="hid_get_device_string">hid_device_string</link>
+      </member>
+      <member>
+        <link linkend="hid_next_device">hid_next_device</link>
+      </member>
+      <member>
+        <link linkend="hid_free_enumeration">hid_free_enumeration</link>
+      </member>
+      <member>
+        <link linkend="initusb">initusb</link>
+      </member>
+      <member>
+        <link linkend="openusb">openusb</link>
+      </member>
+      <member>
+        <link linkend="writeusb">writeusb</link>
+      </member>
+      <member>
+        <link linkend="readusb">readusb</link>
+      </member>
+      <member>
+        <link linkend="read_timeoutusb">read_timeoutusb</link>
+      </member>
+      <member>
+        <link linkend="closeusb">closeusb</link>
+      </member>
+      <member>
+        <link linkend="get_manufacturerusb">get_manufacturerusb</link>
+      </member>
+      <member>
+        <link linkend="exitusb">exitusb</link>
+      </member>
+      <member>
+        <link linkend="get_manufacturerusb">get_manufacturerusb</link>
+      </member>
+      <member>
+        <link linkend="get_productusb">get_productusb</link>
+      </member>
+      <member>
+        <link linkend="get_serialusb">get_serialusb</link>
+      </member>
+      <member>
+        <link linkend="get_stringusb">get_stringusb</link>
+      </member>
+      <member>
+        <link linkend="setBuffValue">setBuffValue</link>
+      </member>
+      <member>
+        <link linkend="clearBuffValue">clearBuffValue</link>
+      </member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <simplelist type="vert">
+      <member>Jose Pablo Castro Valverde josepablo.castro@gmail.com</member>
+    </simplelist>
+  </refsection>
+</refentry>

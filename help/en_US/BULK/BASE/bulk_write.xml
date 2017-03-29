@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* JOSE PABLO CASTRO VALVERDE                                            
+* Copyright (C) EDDAP 2012                                             
+* josepablo.castro@gmail.com 
+* USB Comunication Toolbox                                          
+* This file is released under the 3-clause BSD license. See COPYING-BSD.
+ -->
+<refentry version="5.0-subset Scilab" xml:id="bulk_write" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>bulk_write</refname>
+
+    <refpurpose>Write or transfer a buffer to an USB Device</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>write_success=bulk_write(txBuff,_size);</synopsis>
+  </refsynopsisdiv>
+    <refsection><title>Parameters</title>
+      <variablelist>
+      <varlistentry>  
+        <term>txBuff </term>
+          <listitem>
+          : Buffer to be write or transfer to the USB Device. The type of the data in the buffer has to be unsigned integer of 8 bits
+       </listitem> 
+      </varlistentry>
+      <varlistentry>  
+      <term>_size</term>
+        <listitem>
+        : Size of the buffer to write into the USB Device. The type of _size has to be unsigned integer of 8 bits
+        </listitem> 
+        </varlistentry>
+        <varlistentry>  
+        <term>write_success </term>
+          <listitem>
+          : retun 0 if device has been written and -1 if the device can not be written. Check the USB device is properly connected to the host computer and properly opened.
+          </listitem> 
+        </varlistentry>
+      </variablelist>
+    </refsection> 
+     <refsection>
+    <title>Description</title>
+    <para>Write USB Device</para>
+    <para>Thi function write or tranfers a buffer to the HID USB Device. The device has te be conncted and properly open before the writting.</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+    <![CDATA[    
+    n=5;
+    txBuff=init_buff(n);
+    for i=1:n
+        txBuff=setBuffValue(txBuff,i,i);
+    end
+    VendorID="04D8";
+    ProductID="0204";
+    VendorID=uint16(hex2dec(VendorID));
+    ProductID=uint16(hex2dec(ProductID));
+    enpIn=1;
+    enpOut=1;
+    enpIn=uint16(enpIn);
+    enpOut=uint16(enpOut);
+    n=uint8(n)
+    init_success=bulk_init();
+    if ( init_success < 0 ) then
+       disp("unable to initialize the Libusb-1.0 Library");
+       return
+    else
+       disp("Libusb-1.0 Library initialized");
+    end
+    open_success=bulk_open(VendorID,ProductID);
+    if ( open_success < 0 ) then
+       disp("unable to open device");
+       return
+    else
+       disp("device open");
+    end
+    endP_success=bulk_set_endpoint(enpIn,enpOut);
+    if ( endP_success < 0 ) then
+       disp("unable to set end points");
+    else
+       disp("end points has been set");
+    end
+    write_success=bulk_write(txBuff,n);
+    if ( write_success < 0 ) then
+       disp("unable to write device");
+    else
+       disp("device have been  written");
+    end
+    close_success=bulk_close();  
+    if ( close_success < 0 ) then
+       disp("unable to closed device");
+    else
+       disp("device closed");
+    end
+    exit_success=bulk_exit();
+    if ( init_success < 0 ) then
+       disp("unable to free static data associated with Libusb-1.0 Library");
+       return
+    else
+       disp("Libusb-1.0 Library have been freed all of the static data associated");
+    end
+]]>
+    
+    
+    </programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See Also</title>
+     <simplelist type="inline">
+      <member>
+        <link linkend="writeusb">writeusb</link>
+      </member>
+      <member>
+        <link linkend="bulk_write_timeout">bulk_write_timeout</link>
+      </member>
+      <member>
+        <link linkend="bulk_init">bulk_init</link>
+      </member>
+      <member>
+        <link linkend="bulk_open">bulk_open</link>
+      </member>
+      <member>
+        <link linkend="bulk_read">bulk_read</link>
+      </member>
+      <member>
+        <link linkend="bulk_close">bulk_close</link>
+      </member>
+      <member>
+        <link linkend="bulk_read_timeout">bulk_read_timeout</link>
+      </member>
+      <member>
+        <link linkend="init_buff">init_buff</link>
+      </member>
+      <member>
+        <link linkend="setBuffValue">setBuffValue</link>
+      </member>
+      <member>
+        <link linkend="clearBuffValue">clearBuffValue</link>
+      </member>
+      <member>
+        <link linkend="bulk_exit">bulk_exit</link>
+      </member>
+    </simplelist>
+  </refsection>
+  <refsection>
+    <title>Authors</title>
+    <simplelist type="vert">
+      <member>Jose Pablo Castro Valverde josepablo.castro@gmail.com</member>
+    </simplelist>
+  </refsection>
+</refentry>

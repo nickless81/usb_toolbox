@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA - Allan CORNET
+ * 
+ * This file is released under the 3-clause BSD license. See COPYING-BSD.
+ *
+ -->
+<refentry version="5.0-subset Scilab" xml:id="writeusb" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>writeusb</refname>
+
+    <refpurpose>Scilab macro's for hid_write</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>write_success=writeusb(txBuff,_size,comu_type)</synopsis>
+  </refsynopsisdiv>
+  <refsection><title>Parameters</title>
+      <variablelist>
+      <varlistentry>  
+        <term>txBuff </term>
+          <listitem>
+          : Buffer to be write or transfer to the USB HID Device. The type of the data in the buffer has to be unsigned integer of 8 bits
+       </listitem> 
+      </varlistentry>
+      <varlistentry>  
+      <term>_size</term>
+        <listitem>
+        : Size of the buffer to write into the USB HID Device. The type of _size has to be unsigned integer of 8 bits
+        </listitem> 
+        </varlistentry>
+        <varlistentry>  
+      <term>comu_type </term>
+        <listitem>
+        : Comunication protocol comunication. This string identify which protocol use. HID, Bulk, Isochronous or CDC "hid", "bulk", "iso" and "cdc" respectively
+       </listitem> 
+      </varlistentry>
+        <varlistentry>  
+        <term>write_success </term>
+          <listitem>
+          : retun 0 if device has been written and -1 if the device can not be written. Check the USB HID device is properly connected to the host computer and properly opened.
+          </listitem> 
+        </varlistentry>
+      </variablelist>
+    </refsection>
+  <refsection>
+    <title>Description</title>
+
+    <para>Write to HID USB Device. Scilab macro's for hid_write</para>
+
+    <para>This is a macro designed to use the hid_write</para>
+    <para>The "bulk", "iso" and "cdc" implementantion are missing</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+    <![CDATA[    
+      n=5
+      txBuff=init_buff(n);
+      for i=1:n
+          txBuff=setBuffValue(txBuff,i,i);
+      end
+      init_success=initusb("hid");
+      if ( init_success < 0 ) then
+         disp("unable to initialize the HIDAPI Library");
+         return
+      else
+         disp("HIDAPI Library initialized");
+      end
+      open_success=openusb("04D8","010B","hid");
+      if ( open_success < 0 ) then
+         disp("unable to open device");
+         return
+      else
+         disp("device open");
+      end
+      write_success=writeusb(txBuff,n,"hid");
+      if ( write_success < 0 ) then
+         disp("unable to write device");
+      else
+         disp("device have been  written");
+      end
+      close_success=closeusb("hid");  
+      if ( close_success < 0 ) then
+         disp("unable to closed device");
+      else
+         disp("device closed");
+      end
+      exit_success=exitusb("hid");
+      if ( init_success < 0 ) then
+         disp("unable to free static data associated with HIDAPI Library");
+         return
+      else
+         disp("HIDAPI Library have been freed all of the static data associated");
+      end
+    ]]>
+    </programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="bulk_write">bulk_write</link>
+      </member>
+      <member>
+        <link linkend="hid_write">hid_write</link>
+      </member>
+      <member>
+        <link linkend="initusb">initusb</link>
+      </member>
+      <member>
+        <link linkend="openusb">openusb</link>
+      </member>
+      <member>
+        <link linkend="writeusb">writeusb</link>
+      </member>
+      <member>
+        <link linkend="hid_set_nonblocking">hid_set_nonblocking</link>
+      </member>
+      <member>
+        <link linkend="readusb">readusb</link>
+      </member>
+      <member>
+        <link linkend="read_timeoutusb">read_timeoutusb</link>
+      </member>
+      <member>
+        <link linkend="closeusb">closeusb</link>
+      </member>
+      <member>
+        <link linkend="exitusb">exitusb</link>
+      </member>
+      <member>
+        <link linkend="init_buff">init_buff</link>
+      </member>
+      <member>
+        <link linkend="setBuffValue">setBuffValue</link>
+      </member>
+      <member>
+        <link linkend="clearBuffValue">clearBuffValue</link>
+      </member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <simplelist type="vert">
+      <member>Jose Pablo Castro Valverde josepablo.castro@gmail.com</member>
+    </simplelist>
+  </refsection>
+</refentry>

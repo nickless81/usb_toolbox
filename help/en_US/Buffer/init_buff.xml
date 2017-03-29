@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!--
+* JOSE PABLO CASTRO VALVERDE                                            
+* Copyright (C) EDDAP 2012                                             
+* josepablo.castro@gmail.com 
+* USB Comunication Toolbox                                          
+* This file is released under the 3-clause BSD license. See COPYING-BSD.
+ -->
+<refentry version="5.0-subset Scilab" xml:id="init_buff" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>init_buff</refname>
+
+    <refpurpose>Initialize a buffer of unsigned integer of 8 bits full of zeros</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>txBuff=init_buff(_size)</synopsis>
+  </refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>  
+        <term>_size</term>
+          <listitem>
+          : Size of the buffer to be created and fulled of zeros.
+       </listitem> 
+        </varlistentry>
+        <varlistentry>
+        <term>txBuff </term>
+          <listitem>
+          : Buffer create by the init_buffer rutine. The type of the data in the buffer are unsigned integer of 8 bits
+       </listitem> 
+        </varlistentry>
+    </variablelist>
+  </refsection>
+  <refsection>
+    <title>Description</title>
+
+    <para>Initialize a buffer of unsigned integer of 8 bits full of zeros</para>
+    <para>This rutine its a scilab macro. The buffer is a matrix of 1 rows and _size columns. 
+    Where _size can not exceed 64 because the HID transfer buffer has a max size of 64 bytes</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+
+    <![CDATA[    
+    n=5;
+    txBuff=init_buff(n);
+    disp(txBuff);
+  ]]>
+    
+    </programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+      <member>
+        <link linkend="hid_write">hid_write</link>
+      </member>
+      <member>
+        <link linkend="writeusb">writeusb</link>
+      </member>
+      <member>
+        <link linkend="setBuffValue">setBuffValue</link>
+      </member>
+      <member>
+        <link linkend="clearBuffValue">clearBuffValue</link>
+      </member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <simplelist type="vert">
+      <member>Jose Pablo Castro Valverde josepablo.castro@gmail.com</member>
+    </simplelist>
+  </refsection>
+</refentry>

@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+ <!--
+* JOSE PABLO CASTRO VALVERDE                                            
+* Copyright (C) EDDAP 2012                                             
+* josepablo.castro@gmail.com 
+* USB Comunication Toolbox                                          
+* This file is released under the 3-clause BSD license. See COPYING-BSD.
+ -->
+<refentry version="5.0-subset Scilab" xml:id="get_device_stringusb" xml:lang="en"
+          xmlns="http://docbook.org/ns/docbook"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          xmlns:svg="http://www.w3.org/2000/svg"
+          xmlns:ns3="http://www.w3.org/1999/xhtml"
+          xmlns:mml="http://www.w3.org/1998/Math/MathML"
+          xmlns:db="http://docbook.org/ns/docbook">
+  <info>
+    <pubdate>$LastChangedDate: 2008-03-26 09:50:39 +0100 (mer., 26 mars 2008)
+    $</pubdate>
+  </info>
+
+  <refnamediv>
+    <refname>get_device_stringusb</refname>
+
+    <refpurpose>Get the VendorID and ProductID of the actual Hid Device enumerated</refpurpose>
+  </refnamediv>
+
+  <refsynopsisdiv>
+    <title>Calling Sequence</title>
+
+    <synopsis>[success_dev,vendor_id,product_id]=get_device_stringusb(comu_type)</synopsis>
+  </refsynopsisdiv>
+  <refsection><title>Parameters</title>
+    <variablelist>
+      <varlistentry>  
+      <term>success_dev</term>
+        <listitem>
+        : This function returns 0 on success and -1 on error.
+        </listitem> 
+      </varlistentry>
+      <varlistentry>  
+      <term>vendor_id</term>
+        <listitem>
+        : Return an integer as the vendor id fo the current HID Device enumerate. 
+        </listitem> 
+      </varlistentry>
+      <varlistentry>  
+      <term>product_id</term>
+        <listitem>
+        : Return an integer as the product id fo the current HID Device enumerate. 
+        </listitem> 
+      </varlistentry>
+      <varlistentry>
+      <term>comu_type  </term>
+        <listitem>
+        : Comunication protocol comunication. This string identify which protocol use. HID, Bulk, Isochronous or CDC "hid", "bulk", "iso" and "cdc" respectively
+     </listitem> 
+    </varlistentry>
+    </variablelist>
+   </refsection>
+  <refsection>
+    <title>Description</title>
+    <para>Get the Vendor ID and Product ID of the current HID Device enumerated</para>
+    <para>This is a macro designed to use the hid_get_device_string</para>
+    <para>The "bulk", "iso" and "cdc" implementantion are missing</para>
+  </refsection>
+
+  <refsection>
+    <title>Examples</title>
+
+    <programlisting role="example">
+    <![CDATA[
+      enum_success=enumerateusb("hid");
+      if( ~( enum_success < 0 ) ) then
+          success_next = 0;
+          M_Vendor=list();
+          M_Product=list();
+          i=0;
+          while( ~( success_next < 0 ) ) 
+             i=i+1;
+             [success_dev,vendor_id,product_id]=get_device_stringusb("hid");
+             M_Vendor($+1)=vendor_id;
+             M_Product($+1)=product_id;
+             success_next=next_deviceusb("hid"); 
+          end
+          free_success=free_enumerationusb("hid");
+          Devices=zeros(i,2)
+          for k=1:i
+              Devices(k,1)=M_Vendor(k)
+              Devices(k,2)=M_Product(k)
+          end
+          Devices=dec2hex(Devices);
+          disp(Devices);
+      end
+    ]]>
+   </programlisting>
+  </refsection>
+
+  <refsection role="see also">
+    <title>See Also</title>
+    <simplelist type="inline">
+    <member>
+        <link linkend="hid_get_device_string">hid_get_device_string</link>
+      </member>
+      <member>
+        <link linkend="enumerateusb">enumerateusb</link>
+      </member>
+      <member>
+        <link linkend="next_deviceusb">next_deviceusb</link>
+      </member>
+      <member>
+        <link linkend="free_enumerationusb">free_enumerationusb</link>
+      </member>
+    </simplelist>
+  </refsection>
+
+  <refsection>
+    <title>Authors</title>
+
+    <simplelist type="vert">
+      <member>Jose Pablo Castro Valverde josepablo.castro@gmail.com</member>
+    </simplelist>
+  </refsection>
+</refentry>

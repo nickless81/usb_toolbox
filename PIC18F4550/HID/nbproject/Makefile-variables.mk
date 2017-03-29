@@ -1,0 +1,34 @@
+#
+# Generated - do not edit!
+#
+# NOCDDL
+#
+CND_BASEDIR=`pwd`
+# default configuration
+CND_ARTIFACT_DIR_default=dist/default/production
+CND_ARTIFACT_NAME_default=HID.production.hex
+CND_ARTIFACT_PATH_default=dist/default/production/HID.production.hex
+CND_PACKAGE_DIR_default=${CND_DISTDIR}/default/package
+CND_PACKAGE_NAME_default=hid.tar
+CND_PACKAGE_PATH_default=${CND_DISTDIR}/default/package/hid.tar
+# DEBUG_USB_REMOTO configuration
+CND_ARTIFACT_DIR_DEBUG_USB_REMOTO=dist/DEBUG_USB_REMOTO/production
+CND_ARTIFACT_NAME_DEBUG_USB_REMOTO=HID.production.hex
+CND_ARTIFACT_PATH_DEBUG_USB_REMOTO=dist/DEBUG_USB_REMOTO/production/HID.production.hex
+CND_PACKAGE_DIR_DEBUG_USB_REMOTO=${CND_DISTDIR}/DEBUG_USB_REMOTO/package
+CND_PACKAGE_NAME_DEBUG_USB_REMOTO=hid.tar
+CND_PACKAGE_PATH_DEBUG_USB_REMOTO=${CND_DISTDIR}/DEBUG_USB_REMOTO/package/hid.tar
+# DEBUG_USB configuration
+CND_ARTIFACT_DIR_DEBUG_USB=dist/DEBUG_USB/production
+CND_ARTIFACT_NAME_DEBUG_USB=HID.production.hex
+CND_ARTIFACT_PATH_DEBUG_USB=dist/DEBUG_USB/production/HID.production.hex
+CND_PACKAGE_DIR_DEBUG_USB=${CND_DISTDIR}/DEBUG_USB/package
+CND_PACKAGE_NAME_DEBUG_USB=hid.tar
+CND_PACKAGE_PATH_DEBUG_USB=${CND_DISTDIR}/DEBUG_USB/package/hid.tar
+# DEBUG_LED configuration
+CND_ARTIFACT_DIR_DEBUG_LED=dist/DEBUG_LED/production
+CND_ARTIFACT_NAME_DEBUG_LED=HID.production.hex
+CND_ARTIFACT_PATH_DEBUG_LED=dist/DEBUG_LED/production/HID.production.hex
+CND_PACKAGE_DIR_DEBUG_LED=${CND_DISTDIR}/DEBUG_LED/package
+CND_PACKAGE_NAME_DEBUG_LED=hid.tar
+CND_PACKAGE_PATH_DEBUG_LED=${CND_DISTDIR}/DEBUG_LED/package/hid.tar
