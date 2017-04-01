@@ -43,8 +43,15 @@ end
 tbx_builder_macros(toolbox_dir);
 tbx_builder_gateway(toolbox_dir);
 tbx_builder_help(toolbox_dir);
-tbx_build_loader(TOOLBOX_NAME, toolbox_dir);
-tbx_build_cleaner(TOOLBOX_NAME, toolbox_dir);
+
+if v(1) < 6 then
+    tbx_build_loader(TOOLBOX_NAME, toolbox_dir);
+    tbx_build_cleaner(TOOLBOX_NAME, toolbox_dir);
+else
+    tbx_build_loader(toolbox_dir);
+    tbx_build_cleaner(toolbox_dir);
+end
+
 
 endfunction
 // =============================================================================
