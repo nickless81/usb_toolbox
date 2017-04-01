@@ -11,13 +11,21 @@
 #if API_SCILAB_VERSION < 3
 #include "stack-c.h"
 #endif
-#include "Scierror.h"
+#if SCI_VERSION_MAJOR < 6
 #include "MALLOC.h"
+#else
+#include "sci_malloc.h"
+#endif
+#include "Scierror.h"
 #include "hidapi.h"
 #define MAX_STR 255
 hid_device *handle_g;
 struct hid_device_info *dev_info, *cur_dev_info;
+#if SCI_VERSION_MAJOR < 6
 int sci_hid_init(char *fname)
+#else
+int sci_hid_init(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   unsigned char  Success = 0;
@@ -28,7 +36,11 @@ int sci_hid_init(char *fname)
   PutLhsVar();
   return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_hid_close(char *fname)
+#else
+int sci_hid_close(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   unsigned char  Success = 0;
@@ -46,7 +58,11 @@ int sci_hid_close(char *fname)
   PutLhsVar();
   return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_hid_enumerate(char *fname)
+#else
+int sci_hid_enumerate(char *fname, void *pvApiCtx)
+#endif
 {
     SciErr sciErr;
     int *piAddressVendorID = NULL;
@@ -67,7 +83,11 @@ int sci_hid_enumerate(char *fname)
     PutLhsVar();
     return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_hid_error(char *fname)
+#else
+int sci_hid_error(char *fname, void *pvApiCtx)
+#endif
 {
     SciErr sciErr;
     wchar_t *Error;
@@ -78,7 +98,11 @@ int sci_hid_error(char *fname)
     PutLhsVar();
     return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_hid_exit(char *fname)
+#else
+int sci_hid_exit(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   unsigned char  Success = 0;
@@ -89,7 +113,11 @@ int sci_hid_exit(char *fname)
   PutLhsVar();
   return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_hid_free_enumeration(char *fname)
+#else
+int sci_hid_free_enumeration(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   unsigned char Success = 0;
@@ -108,7 +136,11 @@ int sci_hid_free_enumeration(char *fname)
   PutLhsVar();
   return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_hid_get_feature_report(char *fname)
+#else
+int sci_hid_get_feature_report(char *fname, void *pvApiCtx)
+#endif
 {
     SciErr sciErr;
     int iRows = 1;
@@ -167,7 +199,11 @@ int sci_hid_get_feature_report(char *fname)
     PutLhsVar();
     return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_hid_get_indexed_string(char *fname)
+#else
+int sci_hid_get_indexed_string(char *fname, void *pvApiCtx)
+#endif
 {
     SciErr sciErr;
     int *piAddressIndex = NULL;
@@ -211,7 +247,11 @@ int sci_hid_get_indexed_string(char *fname)
     PutLhsVar();
     return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_hid_get_manufacturer_string(char *fname)
+#else
+int sci_hid_get_manufacturer_string(char *fname, void *pvApiCtx)
+#endif
 {
     SciErr sciErr;
     char  Success = 0;
@@ -235,7 +275,11 @@ int sci_hid_get_manufacturer_string(char *fname)
     PutLhsVar();
     return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_hid_get_product_string(char *fname)
+#else
+int sci_hid_get_product_string(char *fname, void *pvApiCtx)
+#endif
 {
     SciErr sciErr;
     char  Success = 0;
@@ -259,7 +303,11 @@ int sci_hid_get_product_string(char *fname)
     PutLhsVar();
     return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_hid_get_serial_number_string(char *fname)
+#else
+int sci_hid_get_serial_number_string(char *fname, void *pvApiCtx)
+#endif
 {
     SciErr sciErr;
     char  Success = 0;
@@ -283,7 +331,11 @@ int sci_hid_get_serial_number_string(char *fname)
     PutLhsVar();
     return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_hid_open(char *fname)
+#else
+int sci_hid_open(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   int *piAddressVendorID = NULL;
@@ -338,7 +390,11 @@ int sci_hid_open(char *fname)
   PutLhsVar();
   return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_hid_read(char *fname)
+#else
+int sci_hid_read(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   int iRows = 1;
@@ -394,7 +450,11 @@ int sci_hid_read(char *fname)
   PutLhsVar();
   return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_hid_read_timeout(char *fname)
+#else
+int sci_hid_read_timeout(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   int iRows = 1;
@@ -467,7 +527,11 @@ int sci_hid_read_timeout(char *fname)
   PutLhsVar();
   return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_hid_send_feature_report(char *fname)
+#else
+int sci_hid_send_feature_report(char *fname, void *pvApiCtx)
+#endif
 {
     SciErr sciErr;
     int iRows       = 0;
@@ -539,7 +603,11 @@ int sci_hid_send_feature_report(char *fname)
     PutLhsVar();
     return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_hid_set_nonblocking(char *fname)
+#else
+int sci_hid_set_nonblocking(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   int *piAddressnonblock = NULL;
@@ -572,7 +640,11 @@ int sci_hid_set_nonblocking(char *fname)
   PutLhsVar();
   return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_hid_write(char *fname)
+#else
+int sci_hid_write(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   int iRows       = 0;
@@ -634,7 +706,11 @@ int sci_hid_write(char *fname)
   
   return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_hid_next_device(char *fname)
+#else
+int sci_hid_next_device(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   unsigned char  Success = 0;
@@ -653,7 +729,11 @@ int sci_hid_next_device(char *fname)
   PutLhsVar();
   return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_hid_get_device_string(char *fname)
+#else
+int sci_hid_get_device_string(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   unsigned char  Success = 0;

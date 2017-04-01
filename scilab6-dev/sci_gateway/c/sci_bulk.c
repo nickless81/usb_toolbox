@@ -8,15 +8,29 @@
 #if API_SCILAB_VERSION < 3
 #include "stack-c.h"
 #endif
-#include "Scierror.h"
+#if SCI_VERSION_MAJOR < 6
 #include "MALLOC.h"
+#else
+#include "sci_malloc.h"
+#endif
+#include "Scierror.h"
 #include <bulk.h>
+#if SCI_VERSION_MAJOR < 6
 int InEp  = NULL;
 int OutEp = NULL;
+#else
+int InEp  = 0;
+int OutEp = 0;
+#endif
+
 #define MAX_STR 255
 libusb_device_handle *handle_g;
 int dev_pos;
+#if SCI_VERSION_MAJOR < 6
 int sci_bulk_init(char *fname)
+#else
+int sci_bulk_init(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   unsigned char  Success = 0;
@@ -27,7 +41,11 @@ int sci_bulk_init(char *fname)
   PutLhsVar();
   return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_bulk_close(char *fname)
+#else
+int sci_bulk_close(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   unsigned char  Success = 0;
@@ -45,7 +63,11 @@ int sci_bulk_close(char *fname)
   PutLhsVar();
   return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_bulk_enumerate(char *fname)
+#else
+int sci_bulk_enumerate(char *fname, void *pvApiCtx)
+#endif
 {
     SciErr sciErr;
     int *piAddressVendorID = NULL;
@@ -59,7 +81,11 @@ int sci_bulk_enumerate(char *fname)
     PutLhsVar();
     return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_bulk_exit(char *fname)
+#else
+int sci_bulk_exit(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   unsigned char  Success = 0;
@@ -70,7 +96,11 @@ int sci_bulk_exit(char *fname)
   PutLhsVar();
   return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_bulk_free_enumeration(char *fname)
+#else
+int sci_bulk_free_enumeration(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   unsigned char Success = 0;
@@ -81,7 +111,12 @@ int sci_bulk_free_enumeration(char *fname)
   PutLhsVar();
   return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_bulk_get_device_string(char *fname)
+#else
+int sci_bulk_get_device_string(char *fname, void *pvApiCtx)
+#endif
+
 {
   SciErr sciErr;
   char  Success = 0;
@@ -98,7 +133,11 @@ int sci_bulk_get_device_string(char *fname)
   PutLhsVar();
   return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_bulk_get_indexed_string(char *fname)
+#else
+int sci_bulk_get_indexed_string(char *fname, void *pvApiCtx)
+#endif
 {
     SciErr sciErr;
     int *piAddressIndex = NULL;
@@ -131,7 +170,11 @@ int sci_bulk_get_indexed_string(char *fname)
     PutLhsVar();
     return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_bulk_get_manufacturer_string(char *fname)
+#else
+int sci_bulk_get_manufacturer_string(char *fname, void *pvApiCtx)
+#endif
 {
     SciErr sciErr;
     char  Success = 0;
@@ -145,7 +188,11 @@ int sci_bulk_get_manufacturer_string(char *fname)
     PutLhsVar();
     return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_bulk_get_product_string(char *fname)
+#else
+int sci_bulk_get_product_string(char *fname, void *pvApiCtx)
+#endif
 {
     SciErr sciErr;
     char  Success = 0;
@@ -159,7 +206,11 @@ int sci_bulk_get_product_string(char *fname)
     PutLhsVar();
     return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_bulk_get_serial_number_string(char *fname)
+#else
+int sci_bulk_get_serial_number_string(char *fname, void *pvApiCtx)
+#endif
 {
     SciErr sciErr;
     char  Success = 0;
@@ -173,7 +224,11 @@ int sci_bulk_get_serial_number_string(char *fname)
     PutLhsVar();
     return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_bulk_next_device(char *fname)
+#else
+int sci_bulk_next_device(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   char  Success = 0;
@@ -185,7 +240,11 @@ int sci_bulk_next_device(char *fname)
   PutLhsVar();
   return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_bulk_open(char *fname)
+#else
+int sci_bulk_open(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   int *piAddressVendorID = NULL;
@@ -241,7 +300,11 @@ int sci_bulk_open(char *fname)
   PutLhsVar();
   return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_bulk_read(char *fname)
+#else
+int sci_bulk_read(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   int iRows = 1;
@@ -297,7 +360,11 @@ int sci_bulk_read(char *fname)
   PutLhsVar();
   return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_bulk_read_timeout(char *fname)
+#else
+int sci_bulk_read_timeout(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   int iRows = 1;
@@ -429,7 +496,11 @@ int setblocking(libusb_device_handle *dev_handle,int interface_number, bool set)
     return r;
 }
 */
+#if SCI_VERSION_MAJOR < 6
 int sci_bulk_set_endpoint(char *fname)
+#else
+int sci_bulk_set_endpoint(char *fname, void *pvApiCtx)
+#endif
 {
     SciErr sciErr;
     int *piAddressIn_Ep = NULL;
@@ -480,7 +551,11 @@ int sci_bulk_set_endpoint(char *fname)
     PutLhsVar();
     return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_bulk_write(char *fname)
+#else
+int sci_bulk_write(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   int iRows       = 0;
@@ -550,7 +625,11 @@ int sci_bulk_write(char *fname)
   
   return 0;
 }
+#if SCI_VERSION_MAJOR < 6
 int sci_bulk_write_timeout(char *fname)
+#else
+int sci_bulk_write_timeout(char *fname, void *pvApiCtx)
+#endif
 {
   SciErr sciErr;
   int iRows       = 0;
