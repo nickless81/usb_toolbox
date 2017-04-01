@@ -55,13 +55,13 @@ function builder_gw_c()
   case "Windows" then
       disp("Building for Windows")
       include_path=ilib_include_flag(get_absolute_file_path("builder_gateway_c.sce"))+[" -I C:\MinGW\include -I C:\MinGW\include\ddk"];
-      include_path=include_path+[" -I ..\..\thirdparty\libusb-pbatard\include\libusb-1.0\"];
+      include_path=include_path+[" -I ..\..\thirdparty\libusb-1.0.21\include\libusb-1.0\"];
       CFLAGS =ilib_include_flag(get_absolute_file_path("builder_gateway_c.sce"))+ include_path;
       if opts(2)== 'x86' then
-          LDFLAGS="-L ..\..\thirdparty\libusb-pbatard\MinGW32\static\ -lsetupapi -lusb-1.0";
+          LDFLAGS="-L ..\..\thirdparty\libusb-1.0.21\MinGW32\static\ -lsetupapi -lusb-1.0";
           //LDFLAGS="-L ..\..\thirdparty\libusbx-1.0.10\MinGW32\static\ -lsetupapi -lusb-1.0";
       else
-          LDFLAGS="-L ..\..\thirdparty\libusb-pbatard\MinGW64\static\ -lsetupapi -lusb-1.0";
+          LDFLAGS="-L ..\..\thirdparty\libusb-1.0.21\MinGW64\static\ -lsetupapi -lusb-1.0";
           //LDFLAGS="-L ..\..\thirdparty\libusbx-1.0.10\MinGW64\static\ -lsetupapi -lusb-1.0";
       end
       FILES_GATEWAY=[
@@ -73,12 +73,12 @@ function builder_gw_c()
       tbx_build_gateway("usb_toolbox_c",FUNCTIONS_GATEWAY,FILES_GATEWAY,CURRENT_PATH,"",LDFLAGS,CFLAGS);
   case "Linux" then
       disp("Building for Linux")
-      include_path=ilib_include_flag(get_absolute_file_path("builder_gateway_c.sce")+"../../thirdparty/libusb-linux/include");
+      include_path=ilib_include_flag(get_absolute_file_path("builder_gateway_c.sce")+"../../thirdparty/libusb-1.0.21/include");
       CFLAGS =ilib_include_flag(get_absolute_file_path("builder_gateway_c.sce"))+include_path;
       if opts(2)== 'x86' then
-          LIBS=["../../thirdparty/libusb-linux/i386/lib/libusb-1.0"];
+          LIBS=["../../thirdparty/libusb-1.0.21/i386/lib/libusb-1.0"];
       else
-          LIBS=["../../thirdparty/libusb-linux/amd64/lib/libusb-1.0"];
+          LIBS=["../../thirdparty/libusb-1.0.21/amd64/lib/libusb-1.0"];
       end
       FILES_GATEWAY=[
             "bulk-libusb.c",
