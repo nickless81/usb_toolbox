@@ -83,7 +83,7 @@ function builder_gw_c()
       FILES_GATEWAY=[
             "bulk-libusb.c",
             "sci_bulk.c",
-            "hid-libusb.c",
+            "linux/hid.c",
             "sci_hidapi.c"
             ];
       tbx_build_gateway("usb_toolbox_c",FUNCTIONS_GATEWAY,FILES_GATEWAY,CURRENT_PATH,LIBS,"",CFLAGS);
