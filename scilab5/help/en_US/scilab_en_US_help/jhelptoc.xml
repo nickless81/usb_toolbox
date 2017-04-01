@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!DOCTYPE toc PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp TOC Version 1.0//EN" "http://java.sun.com/products/javahelp/toc_1_0.dtd">
+<toc version="1.0">
+<tocitem target="index" text="USB Comunication Toolbox for Scilab">
+<tocitem target="section_53ffddd9a29a704e3fc4dae5ef1936e7" text="BULK with libusb-1.0 Library">
+<tocitem target="section_7e5cc4002848f796077c5db3a480c384" text="BULK Basic&#0039;s commands">
+<tocitem target="bulk_close" text="bulk_close"/>
+<tocitem target="bulk_exit" text="bulk_exit"/>
+<tocitem target="bulk_init" text="bulk_init"/>
+<tocitem target="bulk_open" text="bulk_open"/>
+<tocitem target="bulk_read" text="bulk_read"/>
+<tocitem target="bulk_read_timeout" text="bulk_read_timeout"/>
+<tocitem target="bulk_write" text="bulk_write"/>
+<tocitem target="bulk_write_timeout" text="bulk_write"/>
+</tocitem>
+<tocitem target="section_fa2518eebd594b00974c956e7b01cd73" text="BULK Device Strings">
+<tocitem target="bulk_get_manufacturer" text="bulk_get_manufacturer"/>
+<tocitem target="bulk_get_product" text="bulk_get_product"/>
+<tocitem target="bulk_get_serial" text="bulk_get_serial"/>
+<tocitem target="bulk_get_string" text="bulk_get_string"/>
+</tocitem>
+</tocitem>
+<tocitem target="section_c36b0ddef794590525162ffa7e9d9f89" text="Data Buffers">
+<tocitem target="clearBuffValue" text="clearBuffValue"/>
+<tocitem target="init_buff" text="init_buff"/>
+<tocitem target="setBuffValue" text="setBuffValue"/>
+</tocitem>
+<tocitem target="section_824f04d0584d74ddcd5a71c81f9380ff" text="HIDAPI Library">
+<tocitem target="section_fa3991f9cc75848ec2b8b1a4326d464a" text="HID Basic&#0039;s commands">
+<tocitem target="hid_close" text="hid_close"/>
+<tocitem target="hid_exit" text="hid_exit"/>
+<tocitem target="hid_init" text="hid_init"/>
+<tocitem target="hid_open" text="hid_open"/>
+<tocitem target="hid_read" text="hid_read"/>
+<tocitem target="hid_read_timeout" text="hid_read_timeout"/>
+<tocitem target="hid_set_nonblocking" text="hid_set_nonblocking"/>
+<tocitem target="hid_write" text="hid_write"/>
+</tocitem>
+<tocitem target="section_42f611e0e12d0ef32e6545d13a99ab29" text="HID Device Enumeration">
+<tocitem target="hid_enumerate" text="hid_enumerate"/>
+<tocitem target="hid_free_enumeration" text="hid_free_enumeration"/>
+<tocitem target="hid_get_device_string" text="hid_get_device_string"/>
+<tocitem target="hid_next_device" text="hid_next_device"/>
+</tocitem>
+<tocitem target="section_a58f3908a75a495a01fcf85e24580384" text="HID Device Reports">
+<tocitem target="hid_get_feature_report" text="hid_get_feature_report"/>
+<tocitem target="hid_send_feature_report" text="hid_send_feature_report"/>
+</tocitem>
+<tocitem target="section_8457fbe8c6edcc00e86391c8cc971f33" text="HID Device Strings">
+<tocitem target="hid_get_manufacturer" text="hid_get_manufacturer"/>
+<tocitem target="hid_get_product" text="hid_get_product"/>
+<tocitem target="hid_get_serial" text="hid_get_serial"/>
+<tocitem target="hid_get_string" text="hid_get_string"/>
+</tocitem>
+</tocitem>
+<tocitem target="section_4df13788aafac0286f6fecbb67dd6c78" text="Microchip MCU 18F4550 Example">
+<tocitem target="MCU" text="MCU Example"/>
+</tocitem>
+<tocitem target="section_90e0798acd71d27026a0bcf8b6747ac5" text="Scilab Macros">
+<tocitem target="section_8f4768728f067a78eace01d16a81e422" text="USB Basic&#0039;s commands">
+<tocitem target="closeusb" text="closeusb"/>
+<tocitem target="exitusb" text="exitusb"/>
+<tocitem target="initusb" text="initusb"/>
+<tocitem target="openusb" text="openusb"/>
+<tocitem target="read_timeoutusb" text="read_timeoutusb"/>
+<tocitem target="readusb" text="readusb"/>
+<tocitem target="write_timeoutusb" text="write_timeoutusb"/>
+<tocitem target="writeusb" text="writeusb"/>
+</tocitem>
+<tocitem target="section_2b8560c95c6a246a61265874cd19cf66" text="USB Device Enumeration">
+<tocitem target="enumerateusb" text="enumerateusb"/>
+<tocitem target="free_enumerationusb" text="free_enumerationusb"/>
+<tocitem target="get_device_stringusb" text="get_device_stringusb"/>
+<tocitem target="next_deviceusb" text="next_deviceusb"/>
+</tocitem>
+<tocitem target="section_988af75151cd1823fc5b4fb8239134d7" text="USB Device Strings">
+<tocitem target="get_manufacturerusb" text="get_manufacturerusb"/>
+<tocitem target="get_productusb" text="get_productusb"/>
+<tocitem target="get_serialusb" text="get_serialusb"/>
+<tocitem target="get_stringusb" text="get_stringusb"/>
+</tocitem>
+</tocitem>
+</tocitem>
+</toc>

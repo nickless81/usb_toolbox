@@ -1,0 +1,130 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>get_productusb</title>
+    <style type="text/css" media="all">
+      @import url("scilab_code.css");
+      @import url("xml_code.css");
+      @import url("c_code.css");
+      @import url("style.css");
+    </style>
+  </head>
+  <body>
+    <div class="manualnavbar">
+    <table width="100%"><tr>
+      <td width="30%">
+    	<span class="previous"><a href="get_manufacturerusb.html">&lt;&lt; get_manufacturerusb</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_988af75151cd1823fc5b4fb8239134d7.html">USB Device Strings</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="get_serialusb.html">get_serialusb &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+
+
+
+    <span class="path"><a href="index.html">USB Comunication Toolbox for Scilab</a> &gt;&gt; <a href="section_90e0798acd71d27026a0bcf8b6747ac5.html">Scilab Macros</a> &gt; <a href="section_988af75151cd1823fc5b4fb8239134d7.html">USB Device Strings</a> &gt; get_productusb</span>
+
+    <br /><br />
+    <div class="info"></div>
+
+  <div class="refnamediv"><h1 class="refname">get_productusb</h1>
+
+    <p class="refpurpose">Get The Product String from a USB device.</p></div>
+
+  <div class="refsynopsisdiv"><h3 class="title">Calling Sequence</h3>
+
+    <div class="synopsis"><pre><span class="default">[</span><span class="default">product_string</span><span class="default">,</span><span class="default">product_success</span><span class="default">]=</span><span class="functionid">get_productusb</span><span class="default">(</span><span class="default">comu_type</span><span class="default">)</span></pre></div></div>
+  <div class="refsection"><h3 class="title">Parameters</h3>
+    <dl><dt><span class="term">product_string</span>
+        <dd>: string A wide string</dd></dt>
+      <dt><span class="term">product_success</span>
+        <dd>: This function returns 0 on success and -1 on error</dd></dt>
+      <dt><span class="term">comu_type</span>
+        <dd>: Comunication protocol comunication. This string identify which protocol use. HID, Bulk, Isochronous or CDC &#0034;hid&#0034;, &#0034;bulk&#0034;, &#0034;iso&#0034; and &#0034;cdc&#0034; respectively</dd></dt></dl></div> 
+  <div class="refsection"><h3 class="title">Description</h3>
+
+    <p class="para">Get The Product String from a USB device. Scilab macro&#0039;s for hid_get_product</p>
+
+    <p class="para">This is a macro designed to use the hid_get_product</p>
+    <p class="para">The &#0034;bulk&#0034;, &#0034;iso&#0034; and &#0034;cdc&#0034; implementantion are missing</p></div>
+
+  <div class="refsection"><h3 class="title">Examples</h3>
+
+    <div class="programlisting"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">clc</span>
+<span class="scilabid">VendorID</span><span class="scilaboperator">=</span><span class="scilabstring">&#0034;</span><span class="scilabstring">04D8</span><span class="scilabstring">&#0034;</span><span class="scilabdefault">;</span>
+<span class="scilabid">ProductID</span><span class="scilaboperator">=</span><span class="scilabstring">&#0034;</span><span class="scilabstring">900A</span><span class="scilabstring">&#0034;</span><span class="scilabdefault">;</span>
+<span class="scilabid">init_success</span><span class="scilaboperator">=</span><span class="scilabid">initusb</span><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">hid</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">init_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to initialize the HIDAPI Library</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+   <span class="scilabckeyword">return</span>
+<span class="scilabskeyword">else</span>
+     <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">HIDAPI Library initialized</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabid">open_success</span><span class="scilaboperator">=</span><span class="scilabid">openusb</span><span class="scilabopenclose">(</span><span class="scilabid">VendorID</span><span class="scilabdefault">,</span><span class="scilabid">ProductID</span><span class="scilabdefault">,</span><span class="scilabstring">&#0034;</span><span class="scilabstring">hid</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">open_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+     <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to open device</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+     <span class="scilabckeyword">return</span>
+<span class="scilabskeyword">else</span>
+     <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">Device Open</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabopenclose">[</span><span class="scilabid">product_string</span><span class="scilabdefault">,</span><span class="scilabid">product_success</span><span class="scilabopenclose">]</span><span class="scilaboperator">=</span><span class="scilabid">get_productusb</span><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">hid</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span>
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">product_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+     <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to get product string</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+     <span class="scilabid">close_success</span><span class="scilaboperator">=</span><span class="scilabid">closeusb</span><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">hid</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+     <span class="scilabid">exit_success</span><span class="scilaboperator">=</span><span class="scilabid">exitusb</span><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">hid</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+     <span class="scilabckeyword">return</span>
+<span class="scilabskeyword">else</span>
+     <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabid">product_string</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabid">close_success</span><span class="scilaboperator">=</span><span class="scilabid">closeusb</span><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">hid</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>  
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">close_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to closed device</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">else</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">device closed</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabid">exit_success</span><span class="scilaboperator">=</span><span class="scilabid">exitusb</span><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">hid</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">exit_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to free static data associated with HIDAPI Library</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+   <span class="scilabckeyword">return</span>
+<span class="scilabskeyword">else</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">HIDAPI Library have been freed all of the static data associated</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
+
+  <div class="refsection"><h3 class="title">See Also</h3>
+    <ul class="itemizedlist"><li class="member"><a href="hid_get_product.html" class="link">hid_get_product</a> &#8212; Get The Product String from a HID device.</li>
+      <li class="member"><a href="openusb.html" class="link">openusb</a> &#8212; Scilab macro&#0039;s for hid_open</li>
+      <li class="member"><a href="closeusb.html" class="link">closeusb</a> &#8212; Scilab macro&#0039;s for hid_close</li></ul></div>
+
+  <div class="refsection"><h3 class="title">Authors</h3>
+
+    <ul class="itemizedlist"><li class="member">Jose Pablo Castro Valverde josepablo.castro@gmail.com</li></ul></div>
+    <br />
+
+    <div class="manualnavbar">
+    <table width="100%">
+    <tr><td colspan="3" class="next"><a href="http://bugzilla.scilab.org/enter_bug.cgi?product=Scilab%20software&component=Documentation%20pages" class="ulink">Report an issue</a></td></tr>
+<tr>
+      <td width="30%">
+    	<span class="previous"><a href="get_manufacturerusb.html">&lt;&lt; get_manufacturerusb</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_988af75151cd1823fc5b4fb8239134d7.html">USB Device Strings</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="get_serialusb.html">get_serialusb &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+  </body>
+</html>

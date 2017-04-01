@@ -1,0 +1,307 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>MCU Example</title>
+    <style type="text/css" media="all">
+      @import url("scilab_code.css");
+      @import url("xml_code.css");
+      @import url("c_code.css");
+      @import url("style.css");
+    </style>
+  </head>
+  <body>
+    <div class="manualnavbar">
+    <table width="100%"><tr>
+      <td width="30%">
+    	<span class="previous"><a href="section_4df13788aafac0286f6fecbb67dd6c78.html">&lt;&lt; Microchip MCU 18F4550 Example</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_4df13788aafac0286f6fecbb67dd6c78.html">Microchip MCU 18F4550 Example</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="section_90e0798acd71d27026a0bcf8b6747ac5.html">Scilab Macros &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+
+
+
+    <span class="path"><a href="index.html">USB Comunication Toolbox for Scilab</a> &gt;&gt; <a href="section_4df13788aafac0286f6fecbb67dd6c78.html">Microchip MCU 18F4550 Example</a> &gt; MCU Example</span>
+
+    <br /><br />
+    <div class="info"></div>
+
+  <div class="refnamediv"><h1 class="refname">MCU Example</h1>
+
+    <p class="refpurpose">Microchip MCU PIC18F4550 Example</p></div>
+  <div class="refsection"><h3 class="title">Description</h3>
+    <p class="para">This section shows the USB HID Device comunicacion process between the host (on GNU/Linux Ubuntu 10-04 32 Bits), and a microcontroler
+      designed to support USB comunication natively without use an external chip.</p>
+    <p class="para">The MCU used for this example is a Microchip MCU PIC18F4550 (see <a href="http://www.microchip.com" class="ulink">http://www.microchip.com</a>),and the source 
+    code for the MCU was written in ANSI C and compiled with the SDCC (Small Device C Compiler <a href="http://sdcc.sourceforge.net/" class="ulink">http://sdcc.sourceforge.net/</a>).
+    The USB HID library used with the MCU was a variation of this <a href="http://www.nutsvolts.com/index.php?/magazine/article/usb_device_control" class="ulink">http://www.nutsvolts.com/index.php?/magazine/article/usb_device_control</a>
+    made by Enrique Olivares, the Copyright is the next:
+    <p class="para">Firmware framework for USB I/O on PIC 18F2455 (and siblings)</p>
+    <p class="para">Copyright (C) 2005 Alexander Enzmann</p>
+    <p class="para">adapted to MCC18 by Alberto Maccioni on 1/8/09</p>
+     <p class="para">re-adapted to SDCC 2.9.0 by Enrique Olivares (EOL) on 22/06/10</p>
+    <p class="para">The re-adapted version was presented on this forum <a href="http://pic-linux.foroactivo.net/" class="ulink">http://pic-linux.foroactivo.net/</a> (Spanish&#0039;s Forum)</p></p></div>
+    <div class="refsection"><h3 class="title">USB Permission on GNU/Linux Ubuntu 10.04</h3>
+    <ul class="itemizedlist"><li class="member">First you have to create a group called microchip
+      <div class="synopsis"><pre><span class="default">username</span><span class="default">@</span><span class="default">localhost</span><span class="default">:$ </span><span class="default">sudo</span> <span class="default">groupadd</span> <span class="default">group</span> <span class="default">microchip</span></pre></div></li>
+    <li class="member">Second you have to added yourself to that group
+      <div class="synopsis"><pre><span class="default">username</span><span class="default">@</span><span class="default">localhost</span><span class="default">:$ </span><span class="default">sudo</span> <span class="default">adduser</span> <span class="default">username</span> <span class="default">microchip</span></pre></div></li>
+    <li class="member">Third you have to create a file for the permissions and save it in /etc/udev/rules.d with the next lines
+      <div class="synopsis"><pre><span class="default">SYSFS</span><span class="default">{</span><span class="default">idVendor</span><span class="default">}==</span>&#0034;<span class="default">04</span><span class="default">d8</span>&#0034;<span class="default">, </span><span class="default">SYSFS</span><span class="default">{</span><span class="default">idProduct</span><span class="default">}==</span>&#0034;<span class="default">900</span><span class="default">A</span>&#0034;<span class="default">, </span><span class="default">MODE</span><span class="default">=</span>&#0034;<span class="default">0666</span>&#0034;<span class="default">, </span><span class="default">GROUP</span><span class="default">=</span>&#0034;<span class="default">microchip</span>&#0034;
+<span class="default">SYSFS</span><span class="default">{</span><span class="default">idVendor</span><span class="default">}==</span>&#0034;<span class="default">04</span><span class="default">d8</span>&#0034;<span class="default">, </span><span class="default">SYSFS</span><span class="default">{</span><span class="default">idProduct</span><span class="default">}==</span>&#0034;<span class="default">010</span><span class="default">B</span>&#0034;<span class="default">, </span><span class="default">MODE</span><span class="default">=</span>&#0034;<span class="default">0666</span>&#0034;<span class="default">, </span><span class="default">GROUP</span><span class="default">=</span>&#0034;<span class="default">microchip</span>&#0034;</pre></div>
+      The first is for the PICkit 3 I used in the examples and the second for the MCU PIC18F4550 I used</li>
+    <li class="member">As last restart the computer
+      <div class="synopsis"><pre><span class="default">username</span><span class="default">@</span><span class="default">localhost</span><span class="default">:$ </span><span class="default">sudo</span> <span class="default">shutdown</span><span class="default"> -</span><span class="default">r</span> <span class="default">now</span></pre></div></li></ul></div>
+  <div class="refsection"><h3 class="title">Examples</h3>
+    <div class="refsection"><h3 class="title">A simple write and read session between the host and the MCU PIC18F4550</h3>
+    <p class="para">In this example the script will send a single instruction to the MCU PIC 18F4550 and receive an array of 5 bytes. 
+      The MCU PIC 18F4550 will send back an array of 64 bytes but the hid_read only takes the first 5.</p>
+    <div class="programlisting"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">n</span><span class="scilaboperator">=</span><span class="scilabnumber">5</span><span class="scilabdefault">;</span>
+<span class="scilabid">txBuff</span><span class="scilaboperator">=</span><span class="scilabid">init_buff</span><span class="scilabopenclose">(</span><span class="scilabid">n</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">for</span> <span class="scilabid">i</span><span class="scilaboperator">=</span><span class="scilabnumber">1</span><span class="scilabspecial">:</span><span class="scilabid">n</span>
+    <span class="scilabid">txBuff</span><span class="scilaboperator">=</span><span class="scilabid">setBuffValue</span><span class="scilabopenclose">(</span><span class="scilabid">txBuff</span><span class="scilabdefault">,</span><span class="scilabid">i</span><span class="scilabdefault">,</span><span class="scilabid">i</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabid">VendorID</span><span class="scilaboperator">=</span><span class="scilabstring">&#0034;</span><span class="scilabstring">04D8</span><span class="scilabstring">&#0034;</span><span class="scilabdefault">;</span>
+<span class="scilabid">ProductID</span><span class="scilaboperator">=</span><span class="scilabstring">&#0034;</span><span class="scilabstring">010B</span><span class="scilabstring">&#0034;</span><span class="scilabdefault">;</span>
+<span class="scilabid">VendorID</span><span class="scilaboperator">=</span><a class="scilabcommand" href="scilab://uint16">uint16</a><span class="scilabopenclose">(</span><a class="scilabmacro" href="scilab://hex2dec">hex2dec</a><span class="scilabopenclose">(</span><span class="scilabid">VendorID</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabid">ProductID</span><span class="scilaboperator">=</span><a class="scilabcommand" href="scilab://uint16">uint16</a><span class="scilabopenclose">(</span><a class="scilabmacro" href="scilab://hex2dec">hex2dec</a><span class="scilabopenclose">(</span><span class="scilabid">ProductID</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabid">init_success</span><span class="scilaboperator">=</span><span class="scilabid">hid_init</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">init_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to initialize the HIDAPI Library</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+   <span class="scilabckeyword">return</span>
+<span class="scilabskeyword">else</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">HIDAPI Library initialized</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabid">open_success</span><span class="scilaboperator">=</span><span class="scilabid">hid_open</span><span class="scilabopenclose">(</span><span class="scilabid">VendorID</span><span class="scilabdefault">,</span><span class="scilabid">ProductID</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">open_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to open device</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+   <span class="scilabckeyword">return</span>
+<span class="scilabskeyword">else</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">device open</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabid">write_success</span><span class="scilaboperator">=</span><span class="scilabid">hid_write</span><span class="scilabopenclose">(</span><span class="scilabid">txBuff</span><span class="scilabdefault">,</span><a class="scilabcommand" href="scilab://uint8">uint8</a><span class="scilabopenclose">(</span><span class="scilabid">n</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">write_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to write device</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">else</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">device have been written</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabid">nonblocking_success</span><span class="scilaboperator">=</span><span class="scilabid">hid_set_nonblocking</span><span class="scilabopenclose">(</span><span class="scilabconstants">%t</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">nonblocking_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to set nonblocking</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">else</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">device have been set nonblocking</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabopenclose">[</span> <span class="scilabid">rxBuff</span> <span class="scilabdefault">,</span> <span class="scilabid">read_success</span> <span class="scilabopenclose">]</span><span class="scilaboperator">=</span><span class="scilabid">hid_read</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://uint8">uint8</a><span class="scilabopenclose">(</span><span class="scilabid">n</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">read_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to read device</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">else</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">device have been read</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabid">rxBuff</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabid">close_success</span><span class="scilaboperator">=</span><span class="scilabid">hid_close</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>  
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">close_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to closed device</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">else</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">device closed</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabid">exit_success</span><span class="scilaboperator">=</span><span class="scilabid">hid_exit</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">init_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to free static data associated with HIDAPI Library</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+   <span class="scilabckeyword">return</span>
+<span class="scilabskeyword">else</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">HIDAPI Library have been freed all of the static data associated</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div>
+   The result will be the next:
+    <div class="programlisting"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">HIDAPI</span> <span class="scilabid">Library</span> <span class="scilabid">initialized</span>
+<span class="scilabid">device</span> <span class="scilabid">open</span>
+<span class="scilabid">device</span> <span class="scilabid">have</span> <span class="scilabid">been</span> <span class="scilabid">written</span>
+<span class="scilabid">device</span> <span class="scilabid">have</span> <span class="scilabid">been</span> <a class="scilabcommand" href="scilab://set">set</a> <span class="scilabstring">nonblocking</span>
+<span class="scilabid">device</span> <span class="scilabid">have</span> <span class="scilabid">been</span> <a class="scilabcommand" href="scilab://read">read</a>
+<span class="scilabnumber">2</span>  <span class="scilabnumber">11</span>  <span class="scilabnumber">12</span>  <span class="scilabnumber">13</span>  <span class="scilabnumber">0</span>
+<span class="scilabid">device</span> <span class="scilabid">closed</span>
+<span class="scilabid">HIDAPI</span> <span class="scilabid">Library</span> <span class="scilabid">have</span> <span class="scilabid">been</span> <span class="scilabid">freed</span> <span class="scilabid">all</span> <span class="scilabid">of</span> <span class="scilabid">the</span> <span class="scilabid">static</span> <span class="scilabid">data</span> <span class="scilabid">associated</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
+  <div class="refsection"><h3 class="title">Get the Strings of a PICKIT 3 Clone</h3>
+    <p class="para">For some reason the script can not get the strings of the PIC18F4550 example, so instead will get the strings of a PICkit 3 Clone</p>
+    <div class="programlisting"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">clc</span>
+<span class="scilabid">VendorID</span><span class="scilaboperator">=</span><span class="scilabstring">&#0034;</span><span class="scilabstring">04D8</span><span class="scilabstring">&#0034;</span><span class="scilabdefault">;</span>
+<span class="scilabid">ProductID</span><span class="scilaboperator">=</span><span class="scilabstring">&#0034;</span><span class="scilabstring">900A</span><span class="scilabstring">&#0034;</span><span class="scilabdefault">;</span>
+<span class="scilabid">VendorID</span><span class="scilaboperator">=</span><a class="scilabcommand" href="scilab://uint16">uint16</a><span class="scilabopenclose">(</span><a class="scilabmacro" href="scilab://hex2dec">hex2dec</a><span class="scilabopenclose">(</span><span class="scilabid">VendorID</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabid">ProductID</span><span class="scilaboperator">=</span><a class="scilabcommand" href="scilab://uint16">uint16</a><span class="scilabopenclose">(</span><a class="scilabmacro" href="scilab://hex2dec">hex2dec</a><span class="scilabopenclose">(</span><span class="scilabid">ProductID</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabid">init_success</span><span class="scilaboperator">=</span><span class="scilabid">hid_init</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">init_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to initialize the HIDAPI Library</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+   <span class="scilabckeyword">return</span>
+<span class="scilabskeyword">else</span>
+     <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">HIDAPI Library initialized</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabid">open_success</span><span class="scilaboperator">=</span><span class="scilabid">hid_open</span><span class="scilabopenclose">(</span><span class="scilabid">VendorID</span><span class="scilabdefault">,</span><span class="scilabid">ProductID</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">open_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+     <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to open device</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+     <span class="scilabckeyword">return</span>
+<span class="scilabskeyword">else</span>
+     <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">Device Open</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabopenclose">[</span><span class="scilabid">manufacturer_string</span><span class="scilabdefault">,</span><span class="scilabid">manufacturer_success</span><span class="scilabopenclose">]</span><span class="scilaboperator">=</span><span class="scilabid">hid_get_manufacturer</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span>
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">manufacturer_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+     <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to get manufacturer string</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+     <span class="scilabid">close_success</span><span class="scilaboperator">=</span><span class="scilabid">hid_close</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+     <span class="scilabid">exit_success</span><span class="scilaboperator">=</span><span class="scilabid">hid_exit</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+     <span class="scilabckeyword">return</span>
+<span class="scilabskeyword">else</span>
+     <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabid">manufacturer_string</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabopenclose">[</span><span class="scilabid">product_string</span><span class="scilabdefault">,</span><span class="scilabid">product_success</span><span class="scilabopenclose">]</span><span class="scilaboperator">=</span><span class="scilabid">hid_get_product</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span>
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">product_success</span><span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+     <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to get product string</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+     <span class="scilabid">close_success</span><span class="scilaboperator">=</span><span class="scilabid">hid_close</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+     <span class="scilabid">exit_success</span><span class="scilaboperator">=</span><span class="scilabid">hid_exit</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+     <span class="scilabckeyword">return</span>
+<span class="scilabskeyword">else</span>
+     <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabid">product_string</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabopenclose">[</span><span class="scilabid">serial_string</span><span class="scilabdefault">,</span><span class="scilabid">serial_success</span><span class="scilabopenclose">]</span><span class="scilaboperator">=</span><span class="scilabid">hid_get_serial</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span>
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">serial_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+     <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to get serial string</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+     <span class="scilabid">close_success</span><span class="scilaboperator">=</span><span class="scilabid">hid_close</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+     <span class="scilabid">exit_success</span><span class="scilaboperator">=</span><span class="scilabid">hid_exit</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+     <span class="scilabckeyword">return</span>
+<span class="scilabskeyword">else</span>
+     <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabid">serial_string</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">using hid_get_string</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">for</span> <span class="scilabid">i</span><span class="scilaboperator">=</span><span class="scilabnumber">1</span><span class="scilabspecial">:</span><span class="scilabnumber">3</span>
+    <span class="scilabopenclose">[</span><span class="scilabid">indexed_string</span><span class="scilabdefault">,</span><span class="scilabid">string_success</span><span class="scilabopenclose">]</span><span class="scilaboperator">=</span><span class="scilabid">hid_get_string</span><span class="scilabopenclose">(</span><a class="scilabcommand" href="scilab://uint16">uint16</a><span class="scilabopenclose">(</span><span class="scilabid">i</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span>
+    <span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">string_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+         <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to get indexed string</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+         <span class="scilabid">close_success</span><span class="scilaboperator">=</span><span class="scilabid">hid_close</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+         <span class="scilabid">exit_success</span><span class="scilaboperator">=</span><span class="scilabid">hid_exit</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+         <span class="scilabckeyword">return</span>
+    <span class="scilabskeyword">else</span>
+         <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabid">indexed_string</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+    <span class="scilabskeyword">end</span>    
+<span class="scilabskeyword">end</span>
+<span class="scilabid">close_success</span><span class="scilaboperator">=</span><span class="scilabid">hid_close</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>  
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">close_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to closed device</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">else</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">device closed</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabid">exit_success</span><span class="scilaboperator">=</span><span class="scilabid">hid_exit</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">init_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to free static data associated with HIDAPI Library</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+   <span class="scilabckeyword">return</span>
+<span class="scilabskeyword">else</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">HIDAPI Library have been freed all of the static data associated</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabid">hid_exit</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div>
+   The result will be the next:
+    <div class="programlisting"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">HIDAPI</span> <span class="scilabid">Library</span> <span class="scilabid">initialized</span>
+<span class="scilabid">Device</span> <span class="scilabid">Open</span>
+<span class="scilabid">Microchip</span> <span class="scilabid">Technology</span> <span class="scilabid">Inc</span><span class="scilaboperator">.</span>
+<span class="scilabid">PICkit</span> <span class="scilabnumber">3</span>
+<span class="scilabid">DEFAULT_PK3</span>
+<span class="scilabid">using</span> <span class="scilabid">hid_get_string</span>
+<span class="scilabid">Microchip</span> <span class="scilabid">Technology</span> <span class="scilabid">Inc</span><span class="scilaboperator">.</span>
+<span class="scilabid">PICkit</span> <span class="scilabnumber">3</span>
+<span class="scilabid">DEFAULT_PK3</span>
+<span class="scilabid">device</span> <span class="scilabid">closed</span>
+<span class="scilabid">HIDAPI</span> <span class="scilabid">Library</span> <span class="scilabid">have</span> <span class="scilabid">been</span> <span class="scilabid">freed</span> <span class="scilabid">all</span> <span class="scilabid">of</span> <span class="scilabid">the</span> <span class="scilabid">static</span> <span class="scilabid">data</span> <span class="scilabid">associated</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
+  <div class="refsection"><h3 class="title">Take a look of how many HID Devices are conected to the host</h3>
+    <p class="para">In this case there are two HID Devices conected to the host. The script will enumerate one by one and will show the Manufacturer and Product strings 
+    of each conected HID Devices</p>
+    <div class="programlisting"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">enum_success</span><span class="scilaboperator">=</span><span class="scilabid">hid_enumerate</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+  <span class="scilabskeyword">if</span><span class="scilabopenclose">(</span> <span class="scilaboperator">~</span><span class="scilabopenclose">(</span> <span class="scilabid">enum_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+      <span class="scilabid">success_next</span> <span class="scilaboperator">=</span> <span class="scilabnumber">0</span><span class="scilabdefault">;</span>
+      <span class="scilabid">M_Vendor</span><span class="scilaboperator">=</span><a class="scilabcommand" href="scilab://list">list</a><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+      <span class="scilabid">M_Product</span><span class="scilaboperator">=</span><a class="scilabcommand" href="scilab://list">list</a><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+      <span class="scilabid">i</span><span class="scilaboperator">=</span><span class="scilabnumber">0</span><span class="scilabdefault">;</span>
+      <span class="scilabskeyword">while</span><span class="scilabopenclose">(</span> <span class="scilaboperator">~</span><span class="scilabopenclose">(</span> <span class="scilabid">success_next</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabopenclose">)</span> 
+         <span class="scilabid">i</span><span class="scilaboperator">=</span><span class="scilabid">i</span><span class="scilaboperator">+</span><span class="scilabnumber">1</span><span class="scilabdefault">;</span>
+         <span class="scilabopenclose">[</span><span class="scilabid">success_dev</span><span class="scilabdefault">,</span><span class="scilabid">vendor_id</span><span class="scilabdefault">,</span><span class="scilabid">product_id</span><span class="scilabopenclose">]</span><span class="scilaboperator">=</span><span class="scilabid">get_device_string</span> <span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+         <span class="scilabid">M_Vendor</span><span class="scilabopenclose">(</span><span class="scilabspecial">$</span><span class="scilaboperator">+</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilaboperator">=</span><span class="scilabid">vendor_id</span><span class="scilabdefault">;</span>
+         <span class="scilabid">M_Product</span><span class="scilabopenclose">(</span><span class="scilabspecial">$</span><span class="scilaboperator">+</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilaboperator">=</span><span class="scilabid">product_id</span><span class="scilabdefault">;</span>
+         <span class="scilabid">success_next</span><span class="scilaboperator">=</span><span class="scilabid">next_device</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span> 
+      <span class="scilabskeyword">end</span>
+      <span class="scilabid">free_success</span><span class="scilaboperator">=</span><span class="scilabid">hid_free_enumeration</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+      <span class="scilabid">Devices</span><span class="scilaboperator">=</span><a class="scilabcommand" href="scilab://zeros">zeros</a><span class="scilabopenclose">(</span><span class="scilabid">i</span><span class="scilabdefault">,</span><span class="scilabnumber">2</span><span class="scilabopenclose">)</span>
+      <span class="scilabskeyword">for</span> <span class="scilabid">k</span><span class="scilaboperator">=</span><span class="scilabnumber">1</span><span class="scilabspecial">:</span><span class="scilabid">i</span>
+          <span class="scilabid">Devices</span><span class="scilabopenclose">(</span><span class="scilabid">k</span><span class="scilabdefault">,</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilaboperator">=</span><span class="scilabid">M_Vendor</span><span class="scilabopenclose">(</span><span class="scilabid">k</span><span class="scilabopenclose">)</span>
+          <span class="scilabid">Devices</span><span class="scilabopenclose">(</span><span class="scilabid">k</span><span class="scilabdefault">,</span><span class="scilabnumber">2</span><span class="scilabopenclose">)</span><span class="scilaboperator">=</span><span class="scilabid">M_Product</span><span class="scilabopenclose">(</span><span class="scilabid">k</span><span class="scilabopenclose">)</span>
+      <span class="scilabskeyword">end</span>
+      <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabid">Devices</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+  <span class="scilabskeyword">end</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div>
+   The result depends fo the number of HID Devices are conected to the Host. For example:
+    <div class="programlisting"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabnumber">3727.</span>    <span class="scilabnumber">34.</span>
+<span class="scilabnumber">3727.</span>    <span class="scilabnumber">34.</span>
+<span class="scilabnumber">1240.</span>    <span class="scilabnumber">267.</span>
+<span class="scilabnumber">1240.</span>    <span class="scilabnumber">36874.</span>
+<span class="scilabnumber">0.</span>       <span class="scilabnumber">0.</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div></div>
+
+  <div class="refsection"><h3 class="title">See Also</h3>
+    <ul class="itemizedlist"><li class="member"><a href="hid_init.html" class="link">hid_init</a> &#8212; Initializes the HIDAPI Library</li>
+      <li class="member"><a href="hid_open.html" class="link">hid_open</a> &#8212; Open a USB HID Device</li>
+      <li class="member"><a href="hid_write.html" class="link">hid_write</a> &#8212; Write or transfer a buffer to an USB HID Device</li>
+      <li class="member"><a href="hid_set_nonblocking.html" class="link">hid_set_nonblocking</a> &#8212; Block or unblock the reading process</li>
+      <li class="member"><a href="hid_read.html" class="link">hid_read</a> &#8212; Read or receive a buffer from an USB HID Device</li>
+      <li class="member"><a href="hid_read_timeout.html" class="link">hid_read_timeout</a> &#8212; Read or receive a buffer from an USB HID Device with timeout</li>
+      <li class="member"><a href="hid_close.html" class="link">hid_close</a> &#8212; Close an USB HID Device Opened</li>
+      <li class="member"><a href="hid_exit.html" class="link">hid_exit</a> &#8212; This function frees all of the static data associated with HIDAPI.</li>
+      <li class="member"><a href="hid_send_feature_report.html" class="link">hid_send_feature_report</a> &#8212; Send a Feature report to the device.</li>
+      <li class="member"><a href="hid_get_feature_report.html" class="link">hid_get_feature_report</a> &#8212; Get a feature report from a HID device.</li>
+      <li class="member"><a href="hid_get_manufacturer.html" class="link">hid_get_manufacturer</a> &#8212; Get The Manufacturer String from a HID device.</li>
+      <li class="member"><a href="hid_get_product.html" class="link">hid_get_product</a> &#8212; Get The Product String from a HID device.</li>
+      <li class="member"><a href="hid_get_serial.html" class="link">hid_get_serial</a> &#8212; Get The Serial Number String from a HID device.</li>
+      <li class="member"><a href="hid_get_string.html" class="link">hid_get_string</a> &#8212; Get a string from a HID device, based on its string index.</li>
+      <li class="member"><a href="hid_enumerate.html" class="link">hid_enumerate</a> &#8212; Enumerate the HID Devices.</li>
+      <li class="member"><a href="hid_get_device_string.html" class="link">hid_device_string</a> &#8212; Get the VendorID and ProductID of the actual Hid Device enumerated</li>
+      <li class="member"><a href="hid_next_device.html" class="link">hid_next_device</a> &#8212; Change the actual Hid Device enumerated for the next one</li>
+      <li class="member"><a href="hid_free_enumeration.html" class="link">hid_free_enumeration</a> &#8212; Free an enumeration Linked List</li>
+      <li class="member"><a href="initusb.html" class="link">initusb</a> &#8212; Scilab macro&#0039;s for hid_init</li>
+      <li class="member"><a href="openusb.html" class="link">openusb</a> &#8212; Scilab macro&#0039;s for hid_open</li>
+      <li class="member"><a href="writeusb.html" class="link">writeusb</a> &#8212; Scilab macro&#0039;s for hid_write</li>
+      <li class="member"><a href="readusb.html" class="link">readusb</a> &#8212; Scilab macro&#0039;s for hid_read</li>
+      <li class="member"><a href="read_timeoutusb.html" class="link">read_timeoutusb</a> &#8212; Scilab macro&#0039;s for hid_read_timeout</li>
+      <li class="member"><a href="closeusb.html" class="link">closeusb</a> &#8212; Scilab macro&#0039;s for hid_close</li>
+      <li class="member"><a href="get_manufacturerusb.html" class="link">get_manufacturerusb</a> &#8212; Get The Manufacturer String from a USB device.</li>
+      <li class="member"><a href="exitusb.html" class="link">exitusb</a> &#8212; Scilab macro&#0039;s for hid_exit</li>
+      <li class="member"><a href="get_manufacturerusb.html" class="link">get_manufacturerusb</a> &#8212; Get The Manufacturer String from a USB device.</li>
+      <li class="member"><a href="get_productusb.html" class="link">get_productusb</a> &#8212; Get The Product String from a USB device.</li>
+      <li class="member"><a href="get_serialusb.html" class="link">get_serialusb</a> &#8212; Get The Serial Number String from a USB device.</li>
+      <li class="member"><a href="get_stringusb.html" class="link">get_stringusb</a> &#8212; Get a string from a USB device, based on its string index.</li>
+      <li class="member"><a href="setBuffValue.html" class="link">setBuffValue</a> &#8212; Set specific position of a buffer of data unsigned integer of 8 bits</li>
+      <li class="member"><a href="clearBuffValue.html" class="link">clearBuffValue</a> &#8212; Clean specific position of a buffer of data unsigned integer of 8 bits</li></ul></div>
+
+  <div class="refsection"><h3 class="title">Authors</h3>
+
+    <ul class="itemizedlist"><li class="member">Jose Pablo Castro Valverde josepablo.castro@gmail.com</li></ul></div>
+    <br />
+
+    <div class="manualnavbar">
+    <table width="100%">
+    <tr><td colspan="3" class="next"><a href="http://bugzilla.scilab.org/enter_bug.cgi?product=Scilab%20software&component=Documentation%20pages" class="ulink">Report an issue</a></td></tr>
+<tr>
+      <td width="30%">
+    	<span class="previous"><a href="section_4df13788aafac0286f6fecbb67dd6c78.html">&lt;&lt; Microchip MCU 18F4550 Example</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_4df13788aafac0286f6fecbb67dd6c78.html">Microchip MCU 18F4550 Example</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="section_90e0798acd71d27026a0bcf8b6747ac5.html">Scilab Macros &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+  </body>
+</html>

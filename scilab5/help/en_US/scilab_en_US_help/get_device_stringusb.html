@@ -1,0 +1,114 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>get_device_stringusb</title>
+    <style type="text/css" media="all">
+      @import url("scilab_code.css");
+      @import url("xml_code.css");
+      @import url("c_code.css");
+      @import url("style.css");
+    </style>
+  </head>
+  <body>
+    <div class="manualnavbar">
+    <table width="100%"><tr>
+      <td width="30%">
+    	<span class="previous"><a href="free_enumerationusb.html">&lt;&lt; free_enumerationusb</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_2b8560c95c6a246a61265874cd19cf66.html">USB Device Enumeration</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="next_deviceusb.html">next_deviceusb &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+
+
+
+    <span class="path"><a href="index.html">USB Comunication Toolbox for Scilab</a> &gt;&gt; <a href="section_90e0798acd71d27026a0bcf8b6747ac5.html">Scilab Macros</a> &gt; <a href="section_2b8560c95c6a246a61265874cd19cf66.html">USB Device Enumeration</a> &gt; get_device_stringusb</span>
+
+    <br /><br />
+    <div class="info"></div>
+
+  <div class="refnamediv"><h1 class="refname">get_device_stringusb</h1>
+
+    <p class="refpurpose">Get the VendorID and ProductID of the actual Hid Device enumerated</p></div>
+
+  <div class="refsynopsisdiv"><h3 class="title">Calling Sequence</h3>
+
+    <div class="synopsis"><pre><span class="default">[</span><span class="default">success_dev</span><span class="default">,</span><span class="default">vendor_id</span><span class="default">,</span><span class="default">product_id</span><span class="default">]=</span><span class="functionid">get_device_stringusb</span><span class="default">(</span><span class="default">comu_type</span><span class="default">)</span></pre></div></div>
+  <div class="refsection"><h3 class="title">Parameters</h3>
+    <dl><dt><span class="term">success_dev</span>
+        <dd>: This function returns 0 on success and -1 on error.</dd></dt>
+      <dt><span class="term">vendor_id</span>
+        <dd>: Return an integer as the vendor id fo the current HID Device enumerate.</dd></dt>
+      <dt><span class="term">product_id</span>
+        <dd>: Return an integer as the product id fo the current HID Device enumerate.</dd></dt>
+      <dt><span class="term">comu_type</span>
+        <dd>: Comunication protocol comunication. This string identify which protocol use. HID, Bulk, Isochronous or CDC &#0034;hid&#0034;, &#0034;bulk&#0034;, &#0034;iso&#0034; and &#0034;cdc&#0034; respectively</dd></dt></dl></div>
+  <div class="refsection"><h3 class="title">Description</h3>
+    <p class="para">Get the Vendor ID and Product ID of the current HID Device enumerated</p>
+    <p class="para">This is a macro designed to use the hid_get_device_string</p>
+    <p class="para">The &#0034;bulk&#0034;, &#0034;iso&#0034; and &#0034;cdc&#0034; implementantion are missing</p></div>
+
+  <div class="refsection"><h3 class="title">Examples</h3>
+
+    <div class="programlisting"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">enum_success</span><span class="scilaboperator">=</span><span class="scilabid">enumerateusb</span><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">hid</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">if</span><span class="scilabopenclose">(</span> <span class="scilaboperator">~</span><span class="scilabopenclose">(</span> <span class="scilabid">enum_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+    <span class="scilabid">success_next</span> <span class="scilaboperator">=</span> <span class="scilabnumber">0</span><span class="scilabdefault">;</span>
+    <span class="scilabid">M_Vendor</span><span class="scilaboperator">=</span><a class="scilabcommand" href="scilab://list">list</a><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+    <span class="scilabid">M_Product</span><span class="scilaboperator">=</span><a class="scilabcommand" href="scilab://list">list</a><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+    <span class="scilabid">i</span><span class="scilaboperator">=</span><span class="scilabnumber">0</span><span class="scilabdefault">;</span>
+    <span class="scilabskeyword">while</span><span class="scilabopenclose">(</span> <span class="scilaboperator">~</span><span class="scilabopenclose">(</span> <span class="scilabid">success_next</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabopenclose">)</span> 
+       <span class="scilabid">i</span><span class="scilaboperator">=</span><span class="scilabid">i</span><span class="scilaboperator">+</span><span class="scilabnumber">1</span><span class="scilabdefault">;</span>
+       <span class="scilabopenclose">[</span><span class="scilabid">success_dev</span><span class="scilabdefault">,</span><span class="scilabid">vendor_id</span><span class="scilabdefault">,</span><span class="scilabid">product_id</span><span class="scilabopenclose">]</span><span class="scilaboperator">=</span><span class="scilabid">get_device_stringusb</span><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">hid</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+       <span class="scilabid">M_Vendor</span><span class="scilabopenclose">(</span><span class="scilabspecial">$</span><span class="scilaboperator">+</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilaboperator">=</span><span class="scilabid">vendor_id</span><span class="scilabdefault">;</span>
+       <span class="scilabid">M_Product</span><span class="scilabopenclose">(</span><span class="scilabspecial">$</span><span class="scilaboperator">+</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilaboperator">=</span><span class="scilabid">product_id</span><span class="scilabdefault">;</span>
+       <span class="scilabid">success_next</span><span class="scilaboperator">=</span><span class="scilabid">next_deviceusb</span><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">hid</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span> 
+    <span class="scilabskeyword">end</span>
+    <span class="scilabid">free_success</span><span class="scilaboperator">=</span><span class="scilabid">free_enumerationusb</span><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">hid</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+    <span class="scilabid">Devices</span><span class="scilaboperator">=</span><a class="scilabcommand" href="scilab://zeros">zeros</a><span class="scilabopenclose">(</span><span class="scilabid">i</span><span class="scilabdefault">,</span><span class="scilabnumber">2</span><span class="scilabopenclose">)</span>
+    <span class="scilabskeyword">for</span> <span class="scilabid">k</span><span class="scilaboperator">=</span><span class="scilabnumber">1</span><span class="scilabspecial">:</span><span class="scilabid">i</span>
+        <span class="scilabid">Devices</span><span class="scilabopenclose">(</span><span class="scilabid">k</span><span class="scilabdefault">,</span><span class="scilabnumber">1</span><span class="scilabopenclose">)</span><span class="scilaboperator">=</span><span class="scilabid">M_Vendor</span><span class="scilabopenclose">(</span><span class="scilabid">k</span><span class="scilabopenclose">)</span>
+        <span class="scilabid">Devices</span><span class="scilabopenclose">(</span><span class="scilabid">k</span><span class="scilabdefault">,</span><span class="scilabnumber">2</span><span class="scilabopenclose">)</span><span class="scilaboperator">=</span><span class="scilabid">M_Product</span><span class="scilabopenclose">(</span><span class="scilabid">k</span><span class="scilabopenclose">)</span>
+    <span class="scilabskeyword">end</span>
+    <span class="scilabid">Devices</span><span class="scilaboperator">=</span><a class="scilabmacro" href="scilab://dec2hex">dec2hex</a><span class="scilabopenclose">(</span><span class="scilabid">Devices</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+    <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabid">Devices</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
+
+  <div class="refsection"><h3 class="title">See Also</h3>
+    <ul class="itemizedlist"><li class="member"><a href="hid_get_device_string.html" class="link">hid_get_device_string</a> &#8212; Get the VendorID and ProductID of the actual Hid Device enumerated</li>
+      <li class="member"><a href="enumerateusb.html" class="link">enumerateusb</a> &#8212; Enumerate the HID Devices</li>
+      <li class="member"><a href="next_deviceusb.html" class="link">next_deviceusb</a> &#8212; Change the actual Hid Device enumerated for the next one</li>
+      <li class="member"><a href="free_enumerationusb.html" class="link">free_enumerationusb</a> &#8212; Free an enumeration Linked List</li></ul></div>
+
+  <div class="refsection"><h3 class="title">Authors</h3>
+
+    <ul class="itemizedlist"><li class="member">Jose Pablo Castro Valverde josepablo.castro@gmail.com</li></ul></div>
+    <br />
+
+    <div class="manualnavbar">
+    <table width="100%">
+    <tr><td colspan="3" class="next"><a href="http://bugzilla.scilab.org/enter_bug.cgi?product=Scilab%20software&component=Documentation%20pages" class="ulink">Report an issue</a></td></tr>
+<tr>
+      <td width="30%">
+    	<span class="previous"><a href="free_enumerationusb.html">&lt;&lt; free_enumerationusb</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_2b8560c95c6a246a61265874cd19cf66.html">USB Device Enumeration</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="next_deviceusb.html">next_deviceusb &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+  </body>
+</html>

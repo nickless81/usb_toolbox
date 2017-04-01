@@ -5,13 +5,10 @@
 // USB Comunication Toolbox                                           
 // This file is released under the 3-clause BSD license. See COPYING-BSD.
 // ====================================================================  
-OS=getos()
-  select OS
-  case "Windows" then
-      cd D:\usb-toolbox\
-  case "Linux" then
-      cd /home/jose/usb-toolbox/
-  end
+etc_tlbx  = get_absolute_file_path("main_clear.sce");
+etc_tlbx  = getshortpathname(etc_tlbx);
+cd (etc_tlbx);
+disp(etc_tlbx);
 clc;
 clear;
 exec cleaner.sce;

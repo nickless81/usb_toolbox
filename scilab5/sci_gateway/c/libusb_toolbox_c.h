@@ -1,0 +1,43 @@
+#ifndef __LIBUSB_TOOLBOX_C_GW_H__
+#define __LIBUSB_TOOLBOX_C_GW_H__
+
+#include "c_gateway_prototype.h"
+
+STACK_GATEWAY_PROTOTYPE(sci_bulk_close);
+STACK_GATEWAY_PROTOTYPE(sci_bulk_enumerate);
+STACK_GATEWAY_PROTOTYPE(sci_bulk_exit);
+STACK_GATEWAY_PROTOTYPE(sci_bulk_free_enumeration);
+STACK_GATEWAY_PROTOTYPE(sci_bulk_get_device_string);
+STACK_GATEWAY_PROTOTYPE(sci_bulk_get_indexed_string);
+STACK_GATEWAY_PROTOTYPE(sci_bulk_get_manufacturer_string);
+STACK_GATEWAY_PROTOTYPE(sci_bulk_get_product_string);
+STACK_GATEWAY_PROTOTYPE(sci_bulk_get_serial_number_string);
+STACK_GATEWAY_PROTOTYPE(sci_bulk_init);
+STACK_GATEWAY_PROTOTYPE(sci_bulk_next_device);
+STACK_GATEWAY_PROTOTYPE(sci_bulk_open);
+STACK_GATEWAY_PROTOTYPE(sci_bulk_read);
+STACK_GATEWAY_PROTOTYPE(sci_bulk_read_timeout);
+STACK_GATEWAY_PROTOTYPE(sci_bulk_set_endpoint);
+STACK_GATEWAY_PROTOTYPE(sci_bulk_write);
+STACK_GATEWAY_PROTOTYPE(sci_bulk_write_timeout);
+STACK_GATEWAY_PROTOTYPE(sci_hid_close);
+STACK_GATEWAY_PROTOTYPE(sci_hid_enumerate);
+STACK_GATEWAY_PROTOTYPE(sci_hid_error);
+STACK_GATEWAY_PROTOTYPE(sci_hid_exit);
+STACK_GATEWAY_PROTOTYPE(sci_hid_free_enumeration);
+STACK_GATEWAY_PROTOTYPE(sci_hid_get_device_string);
+STACK_GATEWAY_PROTOTYPE(sci_hid_get_feature_report);
+STACK_GATEWAY_PROTOTYPE(sci_hid_get_indexed_string);
+STACK_GATEWAY_PROTOTYPE(sci_hid_get_manufacturer_string);
+STACK_GATEWAY_PROTOTYPE(sci_hid_get_product_string);
+STACK_GATEWAY_PROTOTYPE(sci_hid_get_serial_number_string);
+STACK_GATEWAY_PROTOTYPE(sci_hid_init);
+STACK_GATEWAY_PROTOTYPE(sci_hid_next_device);
+STACK_GATEWAY_PROTOTYPE(sci_hid_open);
+STACK_GATEWAY_PROTOTYPE(sci_hid_read);
+STACK_GATEWAY_PROTOTYPE(sci_hid_read_timeout);
+STACK_GATEWAY_PROTOTYPE(sci_hid_send_feature_report);
+STACK_GATEWAY_PROTOTYPE(sci_hid_set_nonblocking);
+STACK_GATEWAY_PROTOTYPE(sci_hid_write);
+
+#endif /* __LIBUSB_TOOLBOX_C_GW_H__ */

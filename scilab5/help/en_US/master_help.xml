@@ -1,56 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE book [
 <!--Begin Entities-->
-<!ENTITY a680239c4d5f3e6b7dc45c62c1051f79a SYSTEM "file:///D:/USB-TO~1/help/en_US/BULK/BASE/BULK_C~1.XML">
-<!ENTITY a2807c934bd46f2d00782ff17979ce2b4 SYSTEM "file:///D:/USB-TO~1/help/en_US/BULK/BASE/BULK_E~1.XML">
-<!ENTITY a4f0f13cc26d79e1a987f20c2473e9cb6 SYSTEM "file:///D:/USB-TO~1/help/en_US/BULK/BASE/BULK_I~1.XML">
-<!ENTITY ac126435a9a1ad4a2c081f2e989f49d84 SYSTEM "file:///D:/USB-TO~1/help/en_US/BULK/BASE/BULK_O~1.XML">
-<!ENTITY a36fe2a7460b7c5e9a5804368044394a5 SYSTEM "file:///D:/USB-TO~1/help/en_US/BULK/BASE/BULK_R~1.XML">
-<!ENTITY a0b99a2bdb197d0ba4db9c6448b7100e7 SYSTEM "file:///D:/USB-TO~1/help/en_US/BULK/BASE/BULK_R~2.XML">
-<!ENTITY a3fcbc6404b3fbe6b8ff6402255933a7f SYSTEM "file:///D:/USB-TO~1/help/en_US/BULK/BASE/BULK_W~1.XML">
-<!ENTITY ab81196edcff58dd1d734f73da7305e75 SYSTEM "file:///D:/USB-TO~1/help/en_US/BULK/BASE/BULK_W~2.XML">
-<!ENTITY a2e2d5ff3d7994636dd1e1eee07998825 SYSTEM "file:///D:/USB-TO~1/help/en_US/BULK/String/BULK_G~2.XML">
-<!ENTITY afa8074760f4211bc759c601c2db2a4a5 SYSTEM "file:///D:/USB-TO~1/help/en_US/BULK/String/BULK_G~4.XML">
-<!ENTITY a49e529a914a2e76b0d3a6e06d46118e7 SYSTEM "file:///D:/USB-TO~1/help/en_US/BULK/String/BULK_G~3.XML">
-<!ENTITY a59c83deb571dc2e4c7c11c49b76da07f SYSTEM "file:///D:/USB-TO~1/help/en_US/BULK/String/BULK_G~1.XML">
-<!ENTITY a32ea7f6bd4ffc3d7e94ecd2a3ba27039 SYSTEM "file:///D:/USB-TO~1/help/en_US/Buffer/CLEARB~1.XML">
-<!ENTITY a0e88f32a63e02115a5c47ab4228f5e55 SYSTEM "file:///D:/USB-TO~1/help/en_US/Buffer/INIT_B~1.XML">
-<!ENTITY a11d846b47542cb586dcef551176dea54 SYSTEM "file:///D:/USB-TO~1/help/en_US/Buffer/SETBUF~1.XML">
-<!ENTITY a381554cb4aff6cf1c48e4d91bb53ecdc SYSTEM "file:///D:/USB-TO~1/help/en_US/HID/Base/HID_CL~1.XML">
-<!ENTITY a07ad960beaceb16ee886bcc8a564136c SYSTEM "file:///D:/USB-TO~1/help/en_US/HID/Base/hid_exit.xml">
-<!ENTITY af57c0b30b9095299f12eccc99fbb92be SYSTEM "file:///D:/USB-TO~1/help/en_US/HID/Base/hid_init.xml">
-<!ENTITY a1a638615bb36a772d24ff7f378249e6d SYSTEM "file:///D:/USB-TO~1/help/en_US/HID/Base/hid_open.xml">
-<!ENTITY a5d2026c58a971da9877cd506bfb37cf7 SYSTEM "file:///D:/USB-TO~1/help/en_US/HID/Base/hid_read.xml">
-<!ENTITY a0d35e62b46b423dafa6240dfd169c948 SYSTEM "file:///D:/USB-TO~1/help/en_US/HID/Base/HID_RE~1.XML">
-<!ENTITY a7bd7c5211ee5569259b1db6e6dcc9a5f SYSTEM "file:///D:/USB-TO~1/help/en_US/HID/Base/HID_SE~1.XML">
-<!ENTITY a9c451dcc232f6a3afc667295619f8d5e SYSTEM "file:///D:/USB-TO~1/help/en_US/HID/Base/HID_WR~1.XML">
-<!ENTITY af1948c3b2420a77e497021cf0c4ca7d2 SYSTEM "file:///D:/USB-TO~1/help/en_US/HID/ENUMER~1/HID_EN~1.XML">
-<!ENTITY a69448c5ca4cf652ae404bbacf5784f38 SYSTEM "file:///D:/USB-TO~1/help/en_US/HID/ENUMER~1/HID_FR~1.XML">
-<!ENTITY a2a89900933bb8820dc72cc1012e6b8aa SYSTEM "file:///D:/USB-TO~1/help/en_US/HID/ENUMER~1/HID_GE~1.XML">
-<!ENTITY aa2d9e698e6663a600e2a330be5785e27 SYSTEM "file:///D:/USB-TO~1/help/en_US/HID/ENUMER~1/HID_NE~1.XML">
-<!ENTITY acd4447c7d6ff4f4b7df8d3cd65d3833a SYSTEM "file:///D:/USB-TO~1/help/en_US/HID/Reports/HID_GE~1.XML">
-<!ENTITY ae288825a70f65b62107c28ee855f3fea SYSTEM "file:///D:/USB-TO~1/help/en_US/HID/Reports/HID_SE~1.XML">
-<!ENTITY a2e15f0922ebd8a228e226241b1fa4cba SYSTEM "file:///D:/USB-TO~1/help/en_US/HID/String/HID_GE~4.XML">
-<!ENTITY aaf0fd9e0c86a1e8c8cd84a6638073d3f SYSTEM "file:///D:/USB-TO~1/help/en_US/HID/String/HID_GE~2.XML">
-<!ENTITY a49801ec65b7ec923019a58ad3df6d616 SYSTEM "file:///D:/USB-TO~1/help/en_US/HID/String/HID_GE~1.XML">
-<!ENTITY a8987a26e61c59c44706deb49c9919fc1 SYSTEM "file:///D:/USB-TO~1/help/en_US/HID/String/HID_GE~3.XML">
-<!ENTITY aaa770044af44681d62f944c834f2408a SYSTEM "file:///D:/USB-TO~1/help/en_US/MCU/MCU.xml">
-<!ENTITY a5960d32ff57424ffd052517f57f6e672 SYSTEM "file:///D:/USB-TO~1/help/en_US/Macros/Base/closeusb.xml">
-<!ENTITY aa6485ac31564d8e3fc4b5f23cd5bd246 SYSTEM "file:///D:/USB-TO~1/help/en_US/Macros/Base/exitusb.xml">
-<!ENTITY a11c0dacfe18b21932a9f3d1dbdd8d7fc SYSTEM "file:///D:/USB-TO~1/help/en_US/Macros/Base/initusb.xml">
-<!ENTITY a2091b487a0c51636b14052ea14ed39e3 SYSTEM "file:///D:/USB-TO~1/help/en_US/Macros/Base/openusb.xml">
-<!ENTITY a50d17e946547f0333e7f364dc56dd8a8 SYSTEM "file:///D:/USB-TO~1/help/en_US/Macros/Base/READ_T~1.XML">
-<!ENTITY a9ec5cfd03af52be8ec1b148c0547e390 SYSTEM "file:///D:/USB-TO~1/help/en_US/Macros/Base/readusb.xml">
-<!ENTITY a09ae20c2e49ff240f1e266b094968ce7 SYSTEM "file:///D:/USB-TO~1/help/en_US/Macros/Base/WRITE_~1.XML">
-<!ENTITY a385009ca64f24db7783490d8ae7760d9 SYSTEM "file:///D:/USB-TO~1/help/en_US/Macros/Base/writeusb.xml">
-<!ENTITY a2e306b3fb981c5a4cf6a089ea3a8610b SYSTEM "file:///D:/USB-TO~1/help/en_US/Macros/ENUMER~1/ENUMER~1.XML">
-<!ENTITY a66b2835117226b5cad124bc159e9a947 SYSTEM "file:///D:/USB-TO~1/help/en_US/Macros/ENUMER~1/FREE_E~1.XML">
-<!ENTITY aa5b36e187fad10cddb5292197723fe0b SYSTEM "file:///D:/USB-TO~1/help/en_US/Macros/ENUMER~1/GET_DE~1.XML">
-<!ENTITY add7288f5341174a883eba47d64d5a4de SYSTEM "file:///D:/USB-TO~1/help/en_US/Macros/ENUMER~1/NEXT_D~1.XML">
-<!ENTITY ad9b81f324482b3186a13518fb123b92c SYSTEM "file:///D:/USB-TO~1/help/en_US/Macros/String/GET_MA~1.XML">
-<!ENTITY a21aae449c9ec9d9a4a61af4da35b504d SYSTEM "file:///D:/USB-TO~1/help/en_US/Macros/String/GET_PR~1.XML">
-<!ENTITY a8d1dc132dd049fa6662b21803f844419 SYSTEM "file:///D:/USB-TO~1/help/en_US/Macros/String/GET_SE~1.XML">
-<!ENTITY ae4285ab53dd1d8ab8e4e4fc47acc4a50 SYSTEM "file:///D:/USB-TO~1/help/en_US/Macros/String/GET_ST~1.XML">
+<!ENTITY a6f17ac1ec89989db16995dbc2e52e0ed SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/BULK/BASE/bulk_close.xml">
+<!ENTITY af23d7a0660a9f23235ea1fe3a59571bc SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/BULK/BASE/bulk_exit.xml">
+<!ENTITY a04a826f9bdf6da3c7c32b74dcfa9e98f SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/BULK/BASE/bulk_init.xml">
+<!ENTITY a07c5cbe2d9badd210e60b55562d1b1b5 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/BULK/BASE/bulk_open.xml">
+<!ENTITY af199cb5fe811d14dd728491decd670ec SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/BULK/BASE/bulk_read.xml">
+<!ENTITY a6cbf9be0832dc633457ac80535cbdb12 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/BULK/BASE/bulk_read_timeout.xml">
+<!ENTITY a102c8c4d72d4cae891ee2d120ef3f32a SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/BULK/BASE/bulk_write.xml">
+<!ENTITY af7b836f5b1fbf7327f1ff92cd1bfd6e7 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/BULK/BASE/bulk_write_timeout.xml">
+<!ENTITY ab6729a9e14cd976c87261854560faa9b SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/BULK/String/bulk_get_manufacturer.xml">
+<!ENTITY ae8d539b80890c6650ab9e83e216e92a3 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/BULK/String/bulk_get_product.xml">
+<!ENTITY a49b0a31d069e93d8337f95cc04336254 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/BULK/String/bulk_get_serial.xml">
+<!ENTITY a23ed47849aa4fcffa4f63a49c3113071 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/BULK/String/bulk_get_string.xml">
+<!ENTITY a90fdcb77216fbd22c04ff002bddfa8c9 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/Buffer/clearBuffValue.xml">
+<!ENTITY a90a46b165e63b6a189f1783336bca8af SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/Buffer/init_buff.xml">
+<!ENTITY a96a1a7fd6f9bc652facdddc0a9a82bf6 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/Buffer/setBuffValue.xml">
+<!ENTITY a11b4e65f0b1b0b78f5bcbe4d6256f5c7 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/HID/Base/hid_close.xml">
+<!ENTITY a0b2af99ae7a1d313d9f6288a1145b1c8 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/HID/Base/hid_exit.xml">
+<!ENTITY a77a9cb5193ab15d83bff03d710d99ffa SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/HID/Base/hid_init.xml">
+<!ENTITY a5fda78e14c9ac12db587b87e75110fa5 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/HID/Base/hid_open.xml">
+<!ENTITY a3b190a709534b73da98864074bb53017 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/HID/Base/hid_read.xml">
+<!ENTITY a03e6be0316b45e6b5c1f5540ac381aeb SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/HID/Base/hid_read_timeout.xml">
+<!ENTITY addc4ba9040b461ad32bd0dc52aa184b0 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/HID/Base/hid_set_nonblocking.xml">
+<!ENTITY aad78a0e73272767a38b61fbf793a0a86 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/HID/Base/hid_write.xml">
+<!ENTITY afa50082e5fd867bdae291671f7655ab7 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/HID/Enumeration/hid_enumerate.xml">
+<!ENTITY abe5b9b0cc09762d40c49596c30b7e231 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/HID/Enumeration/hid_free_enumeration.xml">
+<!ENTITY a07f100aaad5075c71d35da7e4fd36aaf SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/HID/Enumeration/hid_get_device_string.xml">
+<!ENTITY a47cd1b38958f44962a084a3d9f511ec3 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/HID/Enumeration/hid_next_device.xml">
+<!ENTITY a5437ad7bacfe957630b3936f84b8fec3 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/HID/Reports/hid_get_feature_report.xml">
+<!ENTITY af9b3325f2fddc42010df16124809081b SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/HID/Reports/hid_send_feature_report.xml">
+<!ENTITY af780e5837ff979c022ccadee5c550793 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/HID/String/hid_get_manufacturer.xml">
+<!ENTITY a04a56ad9a566e686d9c935b0da68d3b4 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/HID/String/hid_get_product.xml">
+<!ENTITY a9fd5a30aa3cf1f687dea07ac16229301 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/HID/String/hid_get_serial.xml">
+<!ENTITY ad4ef97281f55a68ae3805408ed7eb782 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/HID/String/hid_get_string.xml">
+<!ENTITY aa46130a8ee7df0f3d4a047102f3be414 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/MCU/MCU.xml">
+<!ENTITY aaa637f83d7a6da9269045e468c4aa065 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/Macros/Base/closeusb.xml">
+<!ENTITY a4770158eee501a875f482289078fd832 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/Macros/Base/exitusb.xml">
+<!ENTITY a27d1f02afa12d8f984d1bc8acc4f7f47 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/Macros/Base/initusb.xml">
+<!ENTITY afd4a243d2583a44e51a5b008cc7fef1a SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/Macros/Base/openusb.xml">
+<!ENTITY a62a95986c49ff4e57d73505852fb8cd3 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/Macros/Base/read_timeoutusb.xml">
+<!ENTITY ac0abed98cbbf436b65d13290a63453bd SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/Macros/Base/readusb.xml">
+<!ENTITY aab89ec8a4b11e9837bbf5a51a4a64d80 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/Macros/Base/write_timeoutusb.xml">
+<!ENTITY a472eb17dca755a3c13f27ec23bdeb4fe SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/Macros/Base/writeusb.xml">
+<!ENTITY a4092354b6ceed80a4c67d35d9c58e8f1 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/Macros/Enumeration/enumerateusb.xml">
+<!ENTITY a911e270c0b48f322f75ad702fef12c98 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/Macros/Enumeration/free_enumerationusb.xml">
+<!ENTITY a120550335adeabc8c261ca72002fb5ea SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/Macros/Enumeration/get_device_stringusb.xml">
+<!ENTITY ae4669f6234eaafcaa81c77a7fcdcc372 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/Macros/Enumeration/next_deviceusb.xml">
+<!ENTITY a42dc83c8f9adba4419a3bc2150ea724e SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/Macros/String/get_manufacturerusb.xml">
+<!ENTITY a4086cb6ad3ffd6ebbc043edc7affc0b4 SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/Macros/String/get_productusb.xml">
+<!ENTITY a5c4387834639b616d7d37a5c50de72ce SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/Macros/String/get_serialusb.xml">
+<!ENTITY aeefb25613fb41b8514b1d63e73435a3a SYSTEM "/home/jose/Documents/OpenSource/usb_toolbox/scilab5/help/en_US/Macros/String/get_stringusb.xml">
 <!--End Entities-->
 ]>
 <book version="5.0-subset Scilab" xml:lang="en_US"
@@ -65,96 +65,96 @@
     <title>USB Comunication Toolbox for Scilab</title>
   </info>
 
-<part xml:id='section_624f8f283f39a27be2e6c3e2233ca825'>
+<part xml:id='section_53ffddd9a29a704e3fc4dae5ef1936e7'>
 <title>BULK with libusb-1.0 Library</title>
-<chapter xml:id='section_6f3e0cfe61934c26215727b3816ac56c'>
+<chapter xml:id='section_7e5cc4002848f796077c5db3a480c384'>
 <title>BULK Basic's commands</title>
-&a680239c4d5f3e6b7dc45c62c1051f79a;
-&a2807c934bd46f2d00782ff17979ce2b4;
-&a4f0f13cc26d79e1a987f20c2473e9cb6;
-&ac126435a9a1ad4a2c081f2e989f49d84;
-&a36fe2a7460b7c5e9a5804368044394a5;
-&a0b99a2bdb197d0ba4db9c6448b7100e7;
-&a3fcbc6404b3fbe6b8ff6402255933a7f;
-&ab81196edcff58dd1d734f73da7305e75;
+&a6f17ac1ec89989db16995dbc2e52e0ed;
+&af23d7a0660a9f23235ea1fe3a59571bc;
+&a04a826f9bdf6da3c7c32b74dcfa9e98f;
+&a07c5cbe2d9badd210e60b55562d1b1b5;
+&af199cb5fe811d14dd728491decd670ec;
+&a6cbf9be0832dc633457ac80535cbdb12;
+&a102c8c4d72d4cae891ee2d120ef3f32a;
+&af7b836f5b1fbf7327f1ff92cd1bfd6e7;
 </chapter>
-<chapter xml:id='section_13a0cffaa0c74efac4344bd7788b0f4e'>
+<chapter xml:id='section_fa2518eebd594b00974c956e7b01cd73'>
 <title>BULK Device Strings</title>
-&a2e2d5ff3d7994636dd1e1eee07998825;
-&afa8074760f4211bc759c601c2db2a4a5;
-&a49e529a914a2e76b0d3a6e06d46118e7;
-&a59c83deb571dc2e4c7c11c49b76da07f;
+&ab6729a9e14cd976c87261854560faa9b;
+&ae8d539b80890c6650ab9e83e216e92a3;
+&a49b0a31d069e93d8337f95cc04336254;
+&a23ed47849aa4fcffa4f63a49c3113071;
 </chapter>
 </part>
-<part xml:id='section_3cccac2ef45b32b670839f3122ea4d95'>
+<part xml:id='section_c36b0ddef794590525162ffa7e9d9f89'>
 <title>Data Buffers</title>
-&a32ea7f6bd4ffc3d7e94ecd2a3ba27039;
-&a0e88f32a63e02115a5c47ab4228f5e55;
-&a11d846b47542cb586dcef551176dea54;
+&a90fdcb77216fbd22c04ff002bddfa8c9;
+&a90a46b165e63b6a189f1783336bca8af;
+&a96a1a7fd6f9bc652facdddc0a9a82bf6;
 </part>
-<part xml:id='section_8c3c48725a52027ab13ac41cee01932a'>
+<part xml:id='section_824f04d0584d74ddcd5a71c81f9380ff'>
 <title>HIDAPI Library</title>
-<chapter xml:id='section_6852f7efffc0dad0da5f71c82ea1e9f8'>
+<chapter xml:id='section_fa3991f9cc75848ec2b8b1a4326d464a'>
 <title>HID Basic's commands</title>
-&a381554cb4aff6cf1c48e4d91bb53ecdc;
-&a07ad960beaceb16ee886bcc8a564136c;
-&af57c0b30b9095299f12eccc99fbb92be;
-&a1a638615bb36a772d24ff7f378249e6d;
-&a5d2026c58a971da9877cd506bfb37cf7;
-&a0d35e62b46b423dafa6240dfd169c948;
-&a7bd7c5211ee5569259b1db6e6dcc9a5f;
-&a9c451dcc232f6a3afc667295619f8d5e;
+&a11b4e65f0b1b0b78f5bcbe4d6256f5c7;
+&a0b2af99ae7a1d313d9f6288a1145b1c8;
+&a77a9cb5193ab15d83bff03d710d99ffa;
+&a5fda78e14c9ac12db587b87e75110fa5;
+&a3b190a709534b73da98864074bb53017;
+&a03e6be0316b45e6b5c1f5540ac381aeb;
+&addc4ba9040b461ad32bd0dc52aa184b0;
+&aad78a0e73272767a38b61fbf793a0a86;
 </chapter>
-<chapter xml:id='section_2e6d2c646d99ca67751a721eac5d9319'>
+<chapter xml:id='section_42f611e0e12d0ef32e6545d13a99ab29'>
 <title>HID Device Enumeration</title>
-&af1948c3b2420a77e497021cf0c4ca7d2;
-&a69448c5ca4cf652ae404bbacf5784f38;
-&a2a89900933bb8820dc72cc1012e6b8aa;
-&aa2d9e698e6663a600e2a330be5785e27;
+&afa50082e5fd867bdae291671f7655ab7;
+&abe5b9b0cc09762d40c49596c30b7e231;
+&a07f100aaad5075c71d35da7e4fd36aaf;
+&a47cd1b38958f44962a084a3d9f511ec3;
 </chapter>
-<chapter xml:id='section_456c5ead909ec62bd760226e5434e6ba'>
+<chapter xml:id='section_a58f3908a75a495a01fcf85e24580384'>
 <title>HID Device Reports</title>
-&acd4447c7d6ff4f4b7df8d3cd65d3833a;
-&ae288825a70f65b62107c28ee855f3fea;
+&a5437ad7bacfe957630b3936f84b8fec3;
+&af9b3325f2fddc42010df16124809081b;
 </chapter>
-<chapter xml:id='section_6ac6811f2f5c1d5e78ad73f2c3aa9a54'>
+<chapter xml:id='section_8457fbe8c6edcc00e86391c8cc971f33'>
 <title>HID Device Strings</title>
-&a2e15f0922ebd8a228e226241b1fa4cba;
-&aaf0fd9e0c86a1e8c8cd84a6638073d3f;
-&a49801ec65b7ec923019a58ad3df6d616;
-&a8987a26e61c59c44706deb49c9919fc1;
+&af780e5837ff979c022ccadee5c550793;
+&a04a56ad9a566e686d9c935b0da68d3b4;
+&a9fd5a30aa3cf1f687dea07ac16229301;
+&ad4ef97281f55a68ae3805408ed7eb782;
 </chapter>
 </part>
-<part xml:id='section_dfb9ad6d56ace8ebe63c87c02aa36504'>
+<part xml:id='section_4df13788aafac0286f6fecbb67dd6c78'>
 <title>Microchip MCU 18F4550 Example</title>
-&aaa770044af44681d62f944c834f2408a;
+&aa46130a8ee7df0f3d4a047102f3be414;
 </part>
-<part xml:id='section_9063331455edb0678c673b24dedce91c'>
+<part xml:id='section_90e0798acd71d27026a0bcf8b6747ac5'>
 <title>Scilab Macros</title>
-<chapter xml:id='section_84f9051e1030bf3eb8fb73d87a29982c'>
+<chapter xml:id='section_8f4768728f067a78eace01d16a81e422'>
 <title>USB Basic's commands</title>
-&a5960d32ff57424ffd052517f57f6e672;
-&aa6485ac31564d8e3fc4b5f23cd5bd246;
-&a11c0dacfe18b21932a9f3d1dbdd8d7fc;
-&a2091b487a0c51636b14052ea14ed39e3;
-&a50d17e946547f0333e7f364dc56dd8a8;
-&a9ec5cfd03af52be8ec1b148c0547e390;
-&a09ae20c2e49ff240f1e266b094968ce7;
-&a385009ca64f24db7783490d8ae7760d9;
+&aaa637f83d7a6da9269045e468c4aa065;
+&a4770158eee501a875f482289078fd832;
+&a27d1f02afa12d8f984d1bc8acc4f7f47;
+&afd4a243d2583a44e51a5b008cc7fef1a;
+&a62a95986c49ff4e57d73505852fb8cd3;
+&ac0abed98cbbf436b65d13290a63453bd;
+&aab89ec8a4b11e9837bbf5a51a4a64d80;
+&a472eb17dca755a3c13f27ec23bdeb4fe;
 </chapter>
-<chapter xml:id='section_96628f3118403f1e877a5be9b25533da'>
+<chapter xml:id='section_2b8560c95c6a246a61265874cd19cf66'>
 <title>USB Device Enumeration</title>
-&a2e306b3fb981c5a4cf6a089ea3a8610b;
-&a66b2835117226b5cad124bc159e9a947;
-&aa5b36e187fad10cddb5292197723fe0b;
-&add7288f5341174a883eba47d64d5a4de;
+&a4092354b6ceed80a4c67d35d9c58e8f1;
+&a911e270c0b48f322f75ad702fef12c98;
+&a120550335adeabc8c261ca72002fb5ea;
+&ae4669f6234eaafcaa81c77a7fcdcc372;
 </chapter>
-<chapter xml:id='section_b8c5ad49cb71556984d396e0d3e80f5c'>
+<chapter xml:id='section_988af75151cd1823fc5b4fb8239134d7'>
 <title>USB Device Strings</title>
-&ad9b81f324482b3186a13518fb123b92c;
-&a21aae449c9ec9d9a4a61af4da35b504d;
-&a8d1dc132dd049fa6662b21803f844419;
-&ae4285ab53dd1d8ab8e4e4fc47acc4a50;
+&a42dc83c8f9adba4419a3bc2150ea724e;
+&a4086cb6ad3ffd6ebbc043edc7affc0b4;
+&a5c4387834639b616d7d37a5c50de72ce;
+&aeefb25613fb41b8514b1d63e73435a3a;
 </chapter>
 </part>
 </book>

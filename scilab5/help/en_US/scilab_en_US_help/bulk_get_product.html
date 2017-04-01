@@ -1,0 +1,129 @@
+<html><head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>bulk_get_product</title>
+    <style type="text/css" media="all">
+      @import url("scilab_code.css");
+      @import url("xml_code.css");
+      @import url("c_code.css");
+      @import url("style.css");
+    </style>
+  </head>
+  <body>
+    <div class="manualnavbar">
+    <table width="100%"><tr>
+      <td width="30%">
+    	<span class="previous"><a href="bulk_get_manufacturer.html">&lt;&lt; bulk_get_manufacturer</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_fa2518eebd594b00974c956e7b01cd73.html">BULK Device Strings</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="bulk_get_serial.html">bulk_get_serial &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+
+
+
+    <span class="path"><a href="index.html">USB Comunication Toolbox for Scilab</a> &gt;&gt; <a href="section_53ffddd9a29a704e3fc4dae5ef1936e7.html">BULK with libusb-1.0 Library</a> &gt; <a href="section_fa2518eebd594b00974c956e7b01cd73.html">BULK Device Strings</a> &gt; bulk_get_product</span>
+
+    <br /><br />
+    <div class="info"></div>
+
+  <div class="refnamediv"><h1 class="refname">bulk_get_product</h1>
+
+    <p class="refpurpose">Get The Product String from a USB device.</p></div>
+
+  <div class="refsynopsisdiv"><h3 class="title">Calling Sequence</h3>
+
+    <div class="synopsis"><pre><span class="default">[</span><span class="default">product_string</span><span class="default">,</span><span class="default">product_success</span><span class="default">]=</span><span class="functionid">bulk_get_product</span><span class="default">()</span></pre></div></div>
+  <div class="refsection"><h3 class="title">Parameters</h3>
+    <dl><dt><span class="term">product_string</span>
+        <dd>: string A wide string</dd></dt>
+      <dt><span class="term">product_success</span>
+        <dd>: This function returns 0 on success and -1 on error</dd></dt></dl></div> 
+  <div class="refsection"><h3 class="title">Description</h3>
+
+    <p class="para">Get The Product String from a USB device</p></div>
+
+  <div class="refsection"><h3 class="title">Examples</h3>
+
+    <div class="programlisting"><table border="0" width="100%"><tr><td width="98%"><pre class="scilabcode"><span class="scilabid">clc</span>
+<span class="scilabid">VendorID</span><span class="scilaboperator">=</span><span class="scilabstring">&#0034;</span><span class="scilabstring">04D8</span><span class="scilabstring">&#0034;</span><span class="scilabdefault">;</span>
+<span class="scilabid">ProductID</span><span class="scilaboperator">=</span><span class="scilabstring">&#0034;</span><span class="scilabstring">0204</span><span class="scilabstring">&#0034;</span><span class="scilabdefault">;</span>
+<span class="scilabid">VendorID</span><span class="scilaboperator">=</span><a class="scilabcommand" href="scilab://uint16">uint16</a><span class="scilabopenclose">(</span><a class="scilabmacro" href="scilab://hex2dec">hex2dec</a><span class="scilabopenclose">(</span><span class="scilabid">VendorID</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabid">ProductID</span><span class="scilaboperator">=</span><a class="scilabcommand" href="scilab://uint16">uint16</a><span class="scilabopenclose">(</span><a class="scilabmacro" href="scilab://hex2dec">hex2dec</a><span class="scilabopenclose">(</span><span class="scilabid">ProductID</span><span class="scilabopenclose">)</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabid">init_success</span><span class="scilaboperator">=</span><span class="scilabid">bulk_init</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">init_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to initialize the Libusb-1.0 Library</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+   <span class="scilabckeyword">return</span>
+<span class="scilabskeyword">else</span>
+     <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">Libusb-1.0 Library initialized</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabid">open_success</span><span class="scilaboperator">=</span><span class="scilabid">bulk_open</span><span class="scilabopenclose">(</span><span class="scilabid">VendorID</span><span class="scilabdefault">,</span><span class="scilabid">ProductID</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">open_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+     <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to open device</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+     <span class="scilabckeyword">return</span>
+<span class="scilabskeyword">else</span>
+     <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">Device Open</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabopenclose">[</span><span class="scilabid">product_string</span><span class="scilabdefault">,</span><span class="scilabid">product_success</span><span class="scilabopenclose">]</span><span class="scilaboperator">=</span><span class="scilabid">bulk_get_product</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span>
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">product_success</span><span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+     <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to get product string</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+     <span class="scilabid">close_success</span><span class="scilaboperator">=</span><span class="scilabid">bulk_close</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+     <span class="scilabid">exit_success</span><span class="scilaboperator">=</span><span class="scilabid">bulk_exit</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+     <span class="scilabckeyword">return</span>
+<span class="scilabskeyword">else</span>
+     <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabid">product_string</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabid">close_success</span><span class="scilaboperator">=</span><span class="scilabid">bulk_close</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>  
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">close_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to closed device</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">else</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">device closed</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span>
+<span class="scilabid">exit_success</span><span class="scilaboperator">=</span><span class="scilabid">bulk_exit</span><span class="scilabopenclose">(</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">if</span> <span class="scilabopenclose">(</span> <span class="scilabid">exit_success</span> <span class="scilaboperator">&#0060;</span> <span class="scilabnumber">0</span> <span class="scilabopenclose">)</span> <span class="scilabskeyword">then</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">unable to free static data associated with Libusb-1.0 Library</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+   <span class="scilabckeyword">return</span>
+<span class="scilabskeyword">else</span>
+   <a class="scilabcommand" href="scilab://disp">disp</a><span class="scilabopenclose">(</span><span class="scilabstring">&#0034;</span><span class="scilabstring">Libusb-1.0 Library have been freed all of the static data associated</span><span class="scilabstring">&#0034;</span><span class="scilabopenclose">)</span><span class="scilabdefault">;</span>
+<span class="scilabskeyword">end</span></pre></td><td valign="top"><a href="scilab://scilab.execexample/"><img src="ScilabExecute.png" border="0"/></a></td><td valign="top"><a href="scilab://scilab.editexample/"><img src="ScilabEdit.png" border="0"/></a></td><td></td></tr></table></div></div>
+
+  <div class="refsection"><h3 class="title">See Also</h3>
+    <ul class="itemizedlist"><li class="member"><a href="get_productusb.html" class="link">get_productusb</a> &#8212; Get The Product String from a USB device.</li>
+      <li class="member"><a href="bulk_init.html" class="link">bulk_init</a> &#8212; Initializes the Libusb-1.0 Library</li>
+      <li class="member"><a href="bulk_open.html" class="link">bulk_open</a> &#8212; Open a USB Device</li>
+      <li class="member"><a href="bulk_close.html" class="link">bulk_close</a> &#8212; Close an USB Device Opened</li>
+      <li class="member"><a href="bulk_exit.html" class="link">bulk_exit</a> &#8212; This function frees all of the static data associated with Libusb-1.0.</li></ul></div>
+
+  <div class="refsection"><h3 class="title">Authors</h3>
+
+    <ul class="itemizedlist"><li class="member">Jose Pablo Castro Valverde josepablo.castro@gmail.com</li></ul></div>
+    <br />
+
+    <div class="manualnavbar">
+    <table width="100%">
+    <tr><td colspan="3" class="next"><a href="http://bugzilla.scilab.org/enter_bug.cgi?product=Scilab%20software&component=Documentation%20pages" class="ulink">Report an issue</a></td></tr>
+<tr>
+      <td width="30%">
+    	<span class="previous"><a href="bulk_get_manufacturer.html">&lt;&lt; bulk_get_manufacturer</a></span>
+
+      </td>
+      <td width="40%" class="center">
+      	<span class="top"><a href="section_fa2518eebd594b00974c956e7b01cd73.html">BULK Device Strings</a></span>
+
+      </td>
+      <td width="30%" class="next">
+      	<span class="next"><a href="bulk_get_serial.html">bulk_get_serial &gt;&gt;</a></span>
+
+      </td>
+    </tr></table>
+      <hr />
+    </div>
+  </body>
+</html>
