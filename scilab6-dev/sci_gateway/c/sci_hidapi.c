@@ -201,7 +201,8 @@ int sci_hid_get_indexed_string(char *fname)
     Success = hid_get_indexed_string(handle_g, Index,IndexedString, MAX_STR);
     createSingleWideString(pvApiCtx, Rhs + 1, &IndexedString[0]);
 #else
-    Success = hid_get_indexed_string_ascii(handle_g, Index,IndexedString, MAX_STR);
+    //TODO: Debug this line on windows
+    //Success = hid_get_indexed_string_ascii(handle_g, Index,IndexedString, MAX_STR);
     createSingleString(pvApiCtx, Rhs + 1, &IndexedString[0]);
 #endif
     createScalarInteger8(pvApiCtx, Rhs + 2, Success);
@@ -224,7 +225,8 @@ int sci_hid_get_manufacturer_string(char *fname)
     Success = hid_get_manufacturer_string(handle_g, Manufacturer, MAX_STR);
     createSingleWideString(pvApiCtx, Rhs + 1, &Manufacturer[0]);
 #else
-    Success = hid_get_manufacturer_string_ascii(handle_g, Manufacturer, MAX_STR);
+    //TODO: Debug this line on windows
+    //Success = hid_get_manufacturer_string_ascii(handle_g, Manufacturer, MAX_STR);
     createSingleString(pvApiCtx, Rhs + 1, &Manufacturer[0]);
 #endif
     createScalarInteger8(pvApiCtx, Rhs + 2, Success );
@@ -247,7 +249,8 @@ int sci_hid_get_product_string(char *fname)
     Success = hid_get_product_string(handle_g, Product, MAX_STR);
     createSingleWideString(pvApiCtx, Rhs + 1, &Product[0]);
 #else
-    Success = hid_get_product_string_ascii(handle_g, Product, MAX_STR);
+    //TODO: Debug this line on windows
+    //Success = hid_get_product_string_ascii(handle_g, Product, MAX_STR);
     createSingleString(pvApiCtx, Rhs + 1, &Product[0]);
 #endif
     createScalarInteger8(pvApiCtx, Rhs + 2, Success);
@@ -270,7 +273,8 @@ int sci_hid_get_serial_number_string(char *fname)
     Success = hid_get_serial_number_string(handle_g, Serial, MAX_STR);
     createSingleWideString(pvApiCtx, Rhs + 1, &Serial[0]);
 #else
-    Success = hid_get_serial_number_string_ascii(handle_g, Serial, MAX_STR);
+    //TODO: Debug this line on windows
+    //Success = hid_get_serial_number_string_ascii(handle_g, Serial, MAX_STR);
     createSingleString(pvApiCtx, Rhs + 1, &Serial[0]);
 #endif
     createScalarInteger8(pvApiCtx, Rhs + 2, Success);
